@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.umutcansahin.manageyourtime.ui.home_screen.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allPlanFragment"
+            app:destination="@id/allPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.umutcansahin.manageyourtime.ui.add_screen.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/allPlanFragment"
+        android:name="com.umutcansahin.manageyourtime.ui.all_plan_screen.AllPlanFragment"
+        android:label="fragment_all_plan"
+        tools:layout="@layout/fragment_all_plan" >
+        <action
+            android:id="@+id/action_allPlanFragment_to_detailPlanFragment"
+            app:destination="@id/detailPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPlanFragment"
+        android:name="com.umutcansahin.manageyourtime.ui.detail_plan.DetailPlanFragment"
+        android:label="fragment_detail_plan"
+        tools:layout="@layout/fragment_detail_plan" >
+        <argument
+            android:name="entityId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

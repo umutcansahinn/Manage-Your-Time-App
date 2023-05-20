@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ManageYourTime</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_plan">Add Plan</string>
+    <string name="plan_s_title">Plan\'s Title</string>
+    <string name="time_for_plan">Time for Plan</string>
+    <string name="empty">empty</string>
+    <string name="title_toast_message">Please check the plan title.</string>
+    <string name="time_toast_message">Please check the plan time.</string>
+    <string name="successful_toast_message">Successful!</string>
+    <string name="infomation_toast_message">Please enter the time in minutes</string>
+    <string name="delete">delete</string>
+    <string name="update">update</string>
+    <string name="error">Error</string>
+    <string name="succesful">Successful</string>
+    <string name="please_enter_the_plans">Please Enter the Plans</string>
+    <string name="show_all_list">Show All List</string>
+    <string name="add_new_plan">ADD NEW PLAN</string>
+    <string name="done">Done!</string>
+    <string name="homework">Homework</string>
+
+</resources>
