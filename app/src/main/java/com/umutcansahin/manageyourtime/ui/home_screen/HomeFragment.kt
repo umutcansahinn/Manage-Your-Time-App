@@ -2,13 +2,12 @@ package com.umutcansahin.manageyourtime.ui.home_screen
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
+import com.umutcansahin.manageyourtime.common.NavType
 import com.umutcansahin.manageyourtime.databinding.FragmentHomeBinding
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -18,7 +17,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infla
     private fun initView() {
         with(binding) {
             addScreen.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAddFragment())
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToAddFragment(
+                        navType = NavType.ADD_NEW_ITEM,
+                        data = null
+                    )
+                )
             }
             allListScreen.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAllPlanFragment())

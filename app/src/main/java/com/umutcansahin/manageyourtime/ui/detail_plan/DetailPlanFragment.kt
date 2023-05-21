@@ -22,7 +22,6 @@ class DetailPlanFragment :
     private var timerPauseValue: Long = 0
     private var countDownTimer: CountDownTimer? = null
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
@@ -84,10 +83,17 @@ class DetailPlanFragment :
             textViewTime.text = (timerStartValue - timerPauseValue).convertToMinuteAndSecond()
 
             buttonUpdate.setOnClickListener {
-
+                findNavController().navigate(
+                    DetailPlanFragmentDirections.actionDetailPlanFragmentToAddFragment(
+                        navType = NavType.UPDATE_ITEM,
+                        data = entity
+                    )
+                )
             }
             buttonDelete.setOnClickListener {
-                viewModel.deletePlan(entity)
+                requireContext().showAlertDialog("Alert!","Do you want to delete this item?"){
+                    viewModel.deletePlan(entity)
+                }
             }
             imageButtonBack.setOnClickListener {
                 findNavController().popBackStack()

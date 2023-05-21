@@ -11,17 +11,25 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_addFragment"
-            app:destination="@id/addFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_allPlanFragment"
             app:destination="@id/allPlanFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="com.umutcansahin.manageyourtime.ui.add_screen.AddFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+        <argument
+            android:name="navType"
+            app:argType="com.umutcansahin.manageyourtime.common.NavType" />
+        <argument
+            android:name="data"
+            app:argType="com.umutcansahin.manageyourtime.data.local.PlanEntity"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/allPlanFragment"
         android:name="com.umutcansahin.manageyourtime.ui.all_plan_screen.AllPlanFragment"
@@ -39,5 +47,8 @@
         <argument
             android:name="entityId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailPlanFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
 </navigation>

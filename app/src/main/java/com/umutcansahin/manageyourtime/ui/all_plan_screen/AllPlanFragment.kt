@@ -42,7 +42,12 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
     }
 
     private fun initView() {
-        binding.recyclerView.adapter = adapter
+        with(binding) {
+            imageButtonBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            recyclerView.adapter = adapter
+        }
     }
 
     private fun setViewVisibility(

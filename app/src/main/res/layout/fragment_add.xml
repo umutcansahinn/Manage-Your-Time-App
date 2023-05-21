@@ -20,9 +20,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textViewInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_new_plan"
+        android:text="@string/add_plan_info"
         android:textSize="32sp"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -86,7 +87,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonAddPlan"
+        android:id="@+id/buttonAddOrUpdatePlan"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="50dp"

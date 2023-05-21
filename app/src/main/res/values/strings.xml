@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">ManageYourTime</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="add_plan">Add Plan</string>
+    <string name="update_plan">Update Plan</string>
+    <string name="update_plan_info">UPDATE PLAN</string>
+    <string name="add_plan_info">ADD PLAN</string>
+
     <string name="plan_s_title">Plan\'s Title</string>
     <string name="time_for_plan">Time for Plan</string>
     <string name="empty">empty</string>
@@ -15,8 +20,8 @@
     <string name="succesful">Successful</string>
     <string name="please_enter_the_plans">Please Enter the Plans</string>
     <string name="show_all_list">Show All List</string>
-    <string name="add_new_plan">ADD NEW PLAN</string>
     <string name="done">Done!</string>
     <string name="homework">Homework</string>
+    <string name="_45_00">45:00</string>
 
 </resources>
