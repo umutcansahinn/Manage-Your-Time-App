@@ -10,5 +10,11 @@ val viewModelModule = module {
 
     viewModel { AddViewModel(addPlanUseCase = get(), updatePlanUseCase = get()) }
     viewModel { AllPlanViewModel(getAllPlanEntityUseCase = get()) }
-    viewModel { DetailPlanViewModel(getPlanEntityByIdUseCase = get(), deletePlanUseCase = get()) }
+    viewModel {
+        DetailPlanViewModel(
+            getPlanEntityByIdUseCase = get(),
+            deletePlanUseCase = get(),
+            addOrDeleteFromFavoriteUseCase = get()
+        )
+    }
 }

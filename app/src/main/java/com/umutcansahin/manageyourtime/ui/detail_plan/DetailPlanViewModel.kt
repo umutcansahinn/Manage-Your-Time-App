@@ -5,15 +5,19 @@ import androidx.lifecycle.viewModelScope
 import com.umutcansahin.manageyourtime.common.Resource
 import com.umutcansahin.manageyourtime.common.RoomResponse
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
+import com.umutcansahin.manageyourtime.domain.usecase.AddOrDeleteFromFavoriteUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.DeletePlanUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityByIdUseCase
+import com.umutcansahin.manageyourtime.domain.usecase.UpdatePlanUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DetailPlanViewModel(
     private val getPlanEntityByIdUseCase: GetPlanEntityByIdUseCase,
-    private val deletePlanUseCase: DeletePlanUseCase
+    private val deletePlanUseCase: DeletePlanUseCase,
+    private val addOrDeleteFromFavoriteUseCase: AddOrDeleteFromFavoriteUseCase
 ) : ViewModel() {
 
     private val _getEntityById = MutableStateFlow<Resource<PlanEntity>>(Resource.Loading)
@@ -21,6 +25,9 @@ class DetailPlanViewModel(
 
     private val _deleteEntity = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
     val deleteEntity = _deleteEntity.asStateFlow()
+
+    private val _addOrDeleteFromFavorite = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
+    val addOrDeleteFromFavorite = _addOrDeleteFromFavorite.asStateFlow()
 
 
     fun getPlanEntityById(entityId: Int) {
@@ -38,4 +45,14 @@ class DetailPlanViewModel(
             }
         }
     }
+
+    fun addOrDeleteFromFavorite(entity: PlanEntity) {
+        viewModelScope.launch {
+            addOrDeleteFromFavoriteUseCase(entity).collect {
+                _addOrDeleteFromFavorite.value = it
+            }
+        }
+    }
 }
+
+

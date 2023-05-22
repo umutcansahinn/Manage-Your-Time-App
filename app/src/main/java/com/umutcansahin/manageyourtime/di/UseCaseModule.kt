@@ -18,4 +18,6 @@ val useCaseModule = module {
 
     factory<GetPlanEntityByIdUseCase> { GetPlanEntityByIdUseCaseImpl(planRepository = get()) }
 
+    factory<AddOrDeleteFromFavoriteUseCase> { AddOrDeleteFromFavoriteUseCaseImpl(planRepository = get()) }
+
 }

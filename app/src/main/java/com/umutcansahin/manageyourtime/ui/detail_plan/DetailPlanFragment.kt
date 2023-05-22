@@ -22,6 +22,8 @@ class DetailPlanFragment :
     private var timerPauseValue: Long = 0
     private var countDownTimer: CountDownTimer? = null
 
+    private var isFavorite = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
@@ -63,6 +65,19 @@ class DetailPlanFragment :
                 }
             }
         }
+        this.collectFlow(viewModel.addOrDeleteFromFavorite) {
+            when (it) {
+                is RoomResponse.Success -> {}
+                is RoomResponse.Loading -> {
+                    setViewVisibility(visibilityForProgressBar = View.VISIBLE)
+                }
+                is RoomResponse.Error -> {
+                    setViewVisibility(visibilityForTextViewError = View.VISIBLE)
+                    binding.textViewError.text =
+                        requireContext().getString(R.string.please_try_again_later)
+                }
+            }
+        }
     }
 
     private fun setViewVisibility(
@@ -82,7 +97,11 @@ class DetailPlanFragment :
         with(binding) {
             textViewTitle.text = entity.name
             textViewTime.text = (timerStartValue - timerPauseValue).convertToMinuteAndSecond()
-
+            if (entity.favorite) {
+                imageButtonFavorite.setImageResource(R.drawable.baseline_star_24)
+            } else {
+                imageButtonFavorite.setImageResource(R.drawable.baseline_star_border_24)
+            }
             buttonUpdate.setOnClickListener {
                 findNavController().navigate(
                     DetailPlanFragmentDirections.actionDetailPlanFragmentToAddFragment(
@@ -110,6 +129,10 @@ class DetailPlanFragment :
             }
             imageButtonResetTimer.setOnClickListener {
                 resetTimer()
+            }
+            imageButtonFavorite.setOnClickListener {
+                isFavorite = !isFavorite
+                viewModel.addOrDeleteFromFavorite(entity.copy(favorite = isFavorite))
             }
         }
     }
