@@ -26,26 +26,52 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     private fun observeData() {
         this.collectFlow(viewModel.addPlanState) {
             when (it) {
-                is Resource.Success -> {
-                    requireContext().showToast(it.data)
+                is RoomResponse.Success -> {
+                    requireContext().showToast(getString(R.string.succesful))
                     findNavController().popBackStack()
                 }
-                is Resource.Error -> {
-                    requireContext().showToast(it.errorMessage ?: String.EMPTY)
+                is RoomResponse.Error -> {
+                    when (it.errorType) {
+                        ErrorType.NAME_IS_NULL_OR_BLANK_ERROR ->
+                            requireContext().showToast(getString(R.string.name_is_not_null_or_blank))
+                        ErrorType.NAME_IS_EMPTY_ERROR ->
+                            requireContext().showToast(getString(R.string.name_is_not_empty))
+                        ErrorType.TIME_IS_NULL_OR_BLANK_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_null_or_blank))
+                        ErrorType.TIME_IS_EMPTY_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_empty))
+                        ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_equals_zero))
+                        ErrorType.ROOM_DEFAULT_ERROR ->
+                            requireContext().showToast(getString(R.string.please_try_again_later))
+                    }
                 }
-                is Resource.Loading -> {}
+                is RoomResponse.Loading -> {}
             }
         }
         this.collectFlow(viewModel.updatePlanState) {
             when (it) {
-                is Resource.Success -> {
-                    requireContext().showToast(it.data)
+                is RoomResponse.Success -> {
+                    requireContext().showToast(getString(R.string.succesful))
                     findNavController().popBackStack()
                 }
-                is Resource.Error -> {
-                    requireContext().showToast(it.errorMessage ?: String.EMPTY)
+                is RoomResponse.Error -> {
+                    when (it.errorType) {
+                        ErrorType.NAME_IS_NULL_OR_BLANK_ERROR ->
+                            requireContext().showToast(getString(R.string.name_is_not_null_or_blank))
+                        ErrorType.NAME_IS_EMPTY_ERROR ->
+                            requireContext().showToast(getString(R.string.name_is_not_empty))
+                        ErrorType.TIME_IS_NULL_OR_BLANK_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_null_or_blank))
+                        ErrorType.TIME_IS_EMPTY_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_empty))
+                        ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_equals_zero))
+                        ErrorType.ROOM_DEFAULT_ERROR ->
+                            requireContext().showToast(getString(R.string.please_try_again_later))
+                    }
                 }
-                is Resource.Loading -> {}
+                is RoomResponse.Loading -> {}
             }
         }
     }
@@ -74,7 +100,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
         binding.buttonAddOrUpdatePlan.setOnClickListener {
             val title = binding.editTextTitle.text.toString()
             val time = binding.editTextTime.text.toString()
-            viewModel.addPlan(name = title, time = time, context = requireContext())
+            viewModel.addPlan(name = title, time = time)
         }
     }
 
@@ -88,7 +114,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                 val title = editTextTitle.text.toString()
                 val time = binding.editTextTime.text.toString()
                 val id = data.id
-                viewModel.updatePlan(name = title, time = time, id = id, context = requireContext())
+                viewModel.updatePlan(name = title, time = time, id = id)
             }
         }
     }

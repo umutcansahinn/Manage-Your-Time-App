@@ -50,15 +50,16 @@ class DetailPlanFragment :
         }
         this.collectFlow(viewModel.deleteEntity) {
             when (it) {
-                is Resource.Success -> {
+                is RoomResponse.Success -> {
                     findNavController().popBackStack()
                 }
-                is Resource.Loading -> {
+                is RoomResponse.Loading -> {
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
                 }
-                is Resource.Error -> {
+                is RoomResponse.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
-                    binding.textViewError.text = it.errorMessage
+                    binding.textViewError.text =
+                        requireContext().getString(R.string.please_try_again_later)
                 }
             }
         }
@@ -91,7 +92,10 @@ class DetailPlanFragment :
                 )
             }
             buttonDelete.setOnClickListener {
-                requireContext().showAlertDialog("Alert!","Do you want to delete this item?"){
+                requireContext().showAlertDialog(
+                    getString(R.string.alert),
+                    getString(R.string.do_you_want_to_delete_this_plan)
+                ) {
                     viewModel.deletePlan(entity)
                 }
             }

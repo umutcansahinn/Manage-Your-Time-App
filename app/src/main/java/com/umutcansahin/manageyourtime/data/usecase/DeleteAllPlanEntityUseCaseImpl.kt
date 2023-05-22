@@ -1,6 +1,7 @@
 package com.umutcansahin.manageyourtime.data.usecase
 
-import com.umutcansahin.manageyourtime.common.Resource
+import com.umutcansahin.manageyourtime.common.ErrorType
+import com.umutcansahin.manageyourtime.common.RoomResponse
 import com.umutcansahin.manageyourtime.domain.repository.PlanRepository
 import com.umutcansahin.manageyourtime.domain.usecase.DeleteAllPlanEntityUseCase
 import kotlinx.coroutines.flow.Flow
@@ -10,13 +11,13 @@ class DeleteAllPlanEntityUseCaseImpl(
     private val planRepository: PlanRepository
 ) : DeleteAllPlanEntityUseCase {
 
-    override suspend fun invoke(): Flow<Resource<String>> = flow {
+    override suspend fun invoke(): Flow<RoomResponse> = flow {
+        emit(RoomResponse.Loading)
         try {
-            emit(Resource.Loading)
             planRepository.deleteAllPlanEntity()
-            emit(Resource.Success("Successful"))
+            emit(RoomResponse.Success)
         } catch (e: Exception) {
-            emit(Resource.Error(e.message))
+            emit(RoomResponse.Error(ErrorType.ROOM_DEFAULT_ERROR))
         }
     }
 }

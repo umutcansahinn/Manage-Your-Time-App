@@ -62,3 +62,7 @@ fun String.convertToMillisecond(): Long {
 fun Long.convertFromMillisecondToMinute(): String {
     return (this / 60_000).toString()
 }
+
+fun String.toIntAndCheckIfEqualsZero(): Boolean {
+    return this.toInt() == 0
+}

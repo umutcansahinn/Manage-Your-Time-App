@@ -1,9 +1,6 @@
 package com.umutcansahin.manageyourtime.data.usecase
 
-import android.content.Context
-import com.umutcansahin.manageyourtime.R
-import com.umutcansahin.manageyourtime.common.Resource
-import com.umutcansahin.manageyourtime.common.convertToMillisecond
+import com.umutcansahin.manageyourtime.common.*
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.repository.PlanRepository
 import com.umutcansahin.manageyourtime.domain.usecase.UpdatePlanUseCase
@@ -16,20 +13,18 @@ class UpdatePlanUseCaseImpl(
     override suspend fun invoke(
         name: String?,
         time: String?,
-        id: Int,
-        context: Context
-    ): Flow<Resource<String>> = flow {
+        id: Int
+    ): Flow<RoomResponse> = flow {
+        emit(RoomResponse.Loading)
         when {
-            name.isNullOrBlank() || name.isEmpty() -> {
-                emit(Resource.Error(context.getString(R.string.title_toast_message)))
-            }
-            time.isNullOrBlank() || time.isEmpty() -> {
-                emit(Resource.Error(context.getString(R.string.time_toast_message)))
-            }
+            name.isNullOrBlank() -> emit(RoomResponse.Error(ErrorType.NAME_IS_NULL_OR_BLANK_ERROR))
+            name.isEmpty() -> emit(RoomResponse.Error(ErrorType.NAME_IS_EMPTY_ERROR))
+            time.isNullOrBlank() -> emit(RoomResponse.Error(ErrorType.TIME_IS_NULL_OR_BLANK_ERROR))
+            time.isEmpty() -> emit(RoomResponse.Error(ErrorType.TIME_IS_EMPTY_ERROR))
+            time.toIntAndCheckIfEqualsZero() -> emit(RoomResponse.Error(ErrorType.TIME_IS_EQUALS_ZERO_ERROR))
             else -> {
                 try {
-                    emit(Resource.Loading)
-                    emit(Resource.Success(context.getString(R.string.succesful)))
+                    emit(RoomResponse.Success)
                     planRepository.updatePlan(
                         PlanEntity(
                             id = id,
@@ -38,7 +33,7 @@ class UpdatePlanUseCaseImpl(
                         )
                     )
                 } catch (e: Exception) {
-                    emit(Resource.Error(e.message))
+                    emit(RoomResponse.Error(ErrorType.ROOM_DEFAULT_ERROR))
                 }
             }
         }

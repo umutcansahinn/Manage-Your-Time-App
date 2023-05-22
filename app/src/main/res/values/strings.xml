@@ -12,6 +12,7 @@
     <string name="empty">empty</string>
     <string name="title_toast_message">Please check the plan title.</string>
     <string name="time_toast_message">Please check the plan time.</string>
+    <string name="room_toast_message">Please try later</string>
     <string name="successful_toast_message">Successful!</string>
     <string name="infomation_toast_message">Please enter the time in minutes</string>
     <string name="delete">delete</string>
@@ -23,5 +24,13 @@
     <string name="done">Done!</string>
     <string name="homework">Homework</string>
     <string name="_45_00">45:00</string>
+    <string name="name_is_not_null_or_blank">name is not null or blank</string>
+    <string name="name_is_not_empty">name is not empty</string>
+    <string name="time_is_not_null_or_blank">time is not null or blank</string>
+    <string name="time_is_not_empty">time is not empty</string>
+    <string name="time_is_not_equals_zero">time is not equals zero</string>
+    <string name="please_try_again_later">please try again later</string>
+    <string name="alert">Alert!</string>
+    <string name="do_you_want_to_delete_this_plan">Do you want to delete this plan?</string>
 
 </resources>

@@ -12,8 +12,8 @@ class GetPlanEntityByIdUseCaseImpl(
     private val planRepository: PlanRepository
 ) : GetPlanEntityByIdUseCase {
     override fun invoke(entityId: Int): Flow<Resource<PlanEntity>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Resource.Loading)
             planRepository.getPlanEntityById(entityId).collect {
                 emit(Resource.Success(data = it))
             }

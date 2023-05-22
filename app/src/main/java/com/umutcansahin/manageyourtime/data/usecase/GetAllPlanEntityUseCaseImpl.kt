@@ -11,8 +11,8 @@ class GetAllPlanEntityUseCaseImpl(
     private val planRepository: PlanRepository
 ) : GetAllPlanEntityUseCase {
     override suspend fun invoke(): Flow<Resource<List<PlanEntity>>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Resource.Loading)
             planRepository.getAllPlanEntity().collect {
                 emit(Resource.Success(data = it))
             }
