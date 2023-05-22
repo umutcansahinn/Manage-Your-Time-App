@@ -35,7 +35,7 @@ class DetailPlanFragment :
     }
 
     private fun observeData() {
-        this.collectFlow(viewModel.getEntityById) {
+        collectFlow(viewModel.getEntityById) {
             when (it) {
                 is Resource.Success -> {
                     setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
@@ -50,7 +50,7 @@ class DetailPlanFragment :
                 }
             }
         }
-        this.collectFlow(viewModel.deleteEntity) {
+        collectFlow(viewModel.deleteEntity) {
             when (it) {
                 is RoomResponse.Success -> {
                     findNavController().popBackStack()
@@ -65,7 +65,7 @@ class DetailPlanFragment :
                 }
             }
         }
-        this.collectFlow(viewModel.addOrDeleteFromFavorite) {
+        collectFlow(viewModel.addOrDeleteFromFavorite) {
             when (it) {
                 is RoomResponse.Success -> {}
                 is RoomResponse.Loading -> {

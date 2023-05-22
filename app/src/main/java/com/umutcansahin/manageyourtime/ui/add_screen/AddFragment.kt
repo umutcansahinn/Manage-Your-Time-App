@@ -24,7 +24,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
     }
 
     private fun observeData() {
-        this.collectFlow(viewModel.addPlanState) {
+        collectFlow(viewModel.addPlanState) {
             when (it) {
                 is RoomResponse.Success -> {
                     requireContext().showToast(getString(R.string.succesful))
@@ -49,7 +49,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                 is RoomResponse.Loading -> {}
             }
         }
-        this.collectFlow(viewModel.updatePlanState) {
+        collectFlow(viewModel.updatePlanState) {
             when (it) {
                 is RoomResponse.Success -> {
                     requireContext().showToast(getString(R.string.succesful))

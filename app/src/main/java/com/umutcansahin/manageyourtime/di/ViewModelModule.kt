@@ -9,7 +9,12 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     viewModel { AddViewModel(addPlanUseCase = get(), updatePlanUseCase = get()) }
-    viewModel { AllPlanViewModel(getAllPlanEntityUseCase = get()) }
+    viewModel {
+        AllPlanViewModel(
+            getAllPlanEntityUseCase = get(),
+            deleteAllPlanEntityUseCase = get()
+        )
+    }
     viewModel {
         DetailPlanViewModel(
             getPlanEntityByIdUseCase = get(),

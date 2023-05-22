@@ -3,9 +3,12 @@ package com.umutcansahin.manageyourtime.ui.all_plan_screen
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.Resource
+import com.umutcansahin.manageyourtime.common.RoomResponse
 import com.umutcansahin.manageyourtime.common.collectFlow
+import com.umutcansahin.manageyourtime.common.showAlertDialog
 import com.umutcansahin.manageyourtime.databinding.FragmentAllPlanBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,7 +24,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
     }
 
     private fun observeData() {
-        this.collectFlow(viewModel.state) {
+        collectFlow(viewModel.state) {
             when (it) {
                 is Resource.Loading -> {
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
@@ -39,12 +42,33 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                 }
             }
         }
+        collectFlow(viewModel.deleteAllPlans) {
+            when (it) {
+                is RoomResponse.Success -> {}
+                is RoomResponse.Loading -> {
+                    setViewVisibility(visibilityForProgressBar = View.VISIBLE)
+                }
+                is RoomResponse.Error -> {
+                    setViewVisibility(visibilityForTextViewError = View.VISIBLE)
+                    binding.textViewError.text =
+                        requireContext().getString(R.string.please_try_again_later)
+                }
+            }
+        }
     }
 
     private fun initView() {
         with(binding) {
             imageButtonBack.setOnClickListener {
                 findNavController().popBackStack()
+            }
+            buttonDeleteAll.setOnClickListener {
+                requireContext().showAlertDialog(
+                    getString(R.string.alert),
+                    getString(R.string.alert_dialog_delete_all_message)
+                ) {
+                    viewModel.deleteAllPlans()
+                }
             }
             recyclerView.adapter = adapter
         }
