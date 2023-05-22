@@ -22,11 +22,9 @@ class AllPlanViewModel(
     private val _deleteAllPlans = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
     val deleteAllPlans = _deleteAllPlans.asStateFlow()
 
-    init {
-        getAllPlan()
-    }
 
-    private fun getAllPlan() {
+
+    fun getAllPlan() {
         viewModelScope.launch {
             getAllPlanEntityUseCase().collect {
                 _state.value = it

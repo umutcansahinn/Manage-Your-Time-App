@@ -21,11 +21,13 @@ class DetailPlanFragment :
     private var timerStartValue: Long = 0
     private var timerPauseValue: Long = 0
     private var countDownTimer: CountDownTimer? = null
+    private var isTimerRunning: Boolean = false
 
     private var isFavorite = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         observeData()
     }
 
@@ -53,6 +55,7 @@ class DetailPlanFragment :
         collectFlow(viewModel.deleteEntity) {
             when (it) {
                 is RoomResponse.Success -> {
+                    setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
                     findNavController().popBackStack()
                 }
                 is RoomResponse.Loading -> {
@@ -67,7 +70,9 @@ class DetailPlanFragment :
         }
         collectFlow(viewModel.addOrDeleteFromFavorite) {
             when (it) {
-                is RoomResponse.Success -> {}
+                is RoomResponse.Success -> {
+                    setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
+                }
                 is RoomResponse.Loading -> {
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
                 }
@@ -138,12 +143,25 @@ class DetailPlanFragment :
     }
 
     private fun startTimer() {
-        timer(timerPauseValue)
+        if (!isTimerRunning) {
+            timer(timerPauseValue)
+            isTimerRunning = true
+        }
     }
-
 
     private fun pauseTimer() {
         countDownTimer?.cancel()
+        isTimerRunning = false
+    }
+
+    private fun resetTimer() {
+        if (countDownTimer != null) {
+            countDownTimer!!.cancel()
+            countDownTimer = null
+            timerPauseValue = 0
+            isTimerRunning = false
+        }
+        binding.textViewTime.text = timerStartValue.convertToMinuteAndSecond()
     }
 
     private fun timer(pauseTime: Long) {
@@ -164,27 +182,14 @@ class DetailPlanFragment :
     }
 
 
-    private fun resetTimer() {
-        if (countDownTimer != null) {
-            countDownTimer!!.cancel()
-            countDownTimer = null
-            timerPauseValue = 0
-        }
-        binding.textViewTime.text = timerStartValue.convertToMinuteAndSecond()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        initView()
-    }
-
     override fun onStop() {
-        super.onStop()
         pauseTimer()
+        super.onStop()
+
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         countDownTimer?.cancel()
+        super.onDestroyView()
     }
 }
