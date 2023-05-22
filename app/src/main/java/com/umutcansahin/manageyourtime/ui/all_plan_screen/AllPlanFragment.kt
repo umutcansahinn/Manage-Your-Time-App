@@ -45,7 +45,9 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
         }
         collectFlow(viewModel.deleteAllPlans) {
             when (it) {
-                is RoomResponse.Success -> {}
+                is RoomResponse.Success -> {
+                    setViewVisibility(visibilityForTextViewEmptyList = View.VISIBLE)
+                }
                 is RoomResponse.Loading -> {
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
                 }
