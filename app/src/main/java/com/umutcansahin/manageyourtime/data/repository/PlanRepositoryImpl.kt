@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 class PlanRepositoryImpl(
     private val planDao: PlanDao
-): PlanRepository  {
+) : PlanRepository {
 
     override suspend fun addPlan(planEntity: PlanEntity) = planDao.addPlan(planEntity)
 
@@ -19,5 +19,9 @@ class PlanRepositoryImpl(
 
     override fun getAllPlanEntity(): Flow<List<PlanEntity>> = planDao.getAllPlanEntity()
 
-    override fun getPlanEntityById(entityId: Int): Flow<PlanEntity> = planDao.getPlanEntityById(entityId)
+    override fun getPlanEntityById(entityId: Int): Flow<PlanEntity> =
+        planDao.getPlanEntityById(entityId)
+
+    override fun getPlanEntityBySearch(search: String): Flow<List<PlanEntity>> =
+        planDao.getPlanEntityBySearch(search)
 }

@@ -7,27 +7,33 @@ import com.umutcansahin.manageyourtime.common.RoomResponse
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.usecase.DeleteAllPlanEntityUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.GetAllPlanEntityUseCase
+import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityBySearchUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class AllPlanViewModel(
     private val getAllPlanEntityUseCase: GetAllPlanEntityUseCase,
-    private val deleteAllPlanEntityUseCase: DeleteAllPlanEntityUseCase
+    private val deleteAllPlanEntityUseCase: DeleteAllPlanEntityUseCase,
+    private val getPlanEntityBySearchUseCase: GetPlanEntityBySearchUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<Resource<List<PlanEntity>>>(Resource.Loading)
-    val state = _state.asStateFlow()
+    private val _getAllPlanEntity = MutableStateFlow<Resource<List<PlanEntity>>>(Resource.Loading)
+    val getAllPlanEntity = _getAllPlanEntity.asStateFlow()
 
     private val _deleteAllPlans = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
     val deleteAllPlans = _deleteAllPlans.asStateFlow()
+
+
+    private val _getPlanEntityBySearch = MutableStateFlow<Resource<List<PlanEntity>>>(Resource.Loading)
+    val getPlanEntityBySearch = _getPlanEntityBySearch.asStateFlow()
 
 
 
     fun getAllPlan() {
         viewModelScope.launch {
             getAllPlanEntityUseCase().collect {
-                _state.value = it
+                _getAllPlanEntity.value = it
             }
         }
     }
@@ -36,6 +42,14 @@ class AllPlanViewModel(
         viewModelScope.launch {
             deleteAllPlanEntityUseCase().collect {
                 _deleteAllPlans.value = it
+            }
+        }
+    }
+
+    fun getPlanEntityBySearch(search: String) {
+        viewModelScope.launch {
+            getPlanEntityBySearchUseCase(search).collect {
+                _getPlanEntityBySearch.value = it
             }
         }
     }

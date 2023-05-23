@@ -15,6 +15,9 @@ interface PlanDao {
     @Query("SELECT * FROM plan WHERE id=:entityId")
     fun getPlanEntityById(entityId: Int): Flow<PlanEntity>
 
+    @Query("SELECT * FROM plan WHERE name LIKE '%' || :search || '%'")
+    fun getPlanEntityBySearch(search: String): Flow<List<PlanEntity>>
+
     @Update
     suspend fun updatePlan(planEntity: PlanEntity)
 

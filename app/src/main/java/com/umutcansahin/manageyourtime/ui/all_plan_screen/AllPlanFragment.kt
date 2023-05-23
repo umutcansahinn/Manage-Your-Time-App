@@ -1,6 +1,8 @@
 package com.umutcansahin.manageyourtime.ui.all_plan_screen
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.umutcansahin.manageyourtime.R
@@ -17,6 +19,8 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
     private val viewModel by viewModel<AllPlanViewModel>()
     private val adapter = PlanAdapter(::itemSetClick)
 
+    private var isSearchVisible = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getAllPlan()
@@ -25,7 +29,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
     }
 
     private fun observeData() {
-        collectFlow(viewModel.state) {
+        collectFlow(viewModel.getAllPlanEntity) {
             when (it) {
                 is Resource.Loading -> {
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
@@ -58,10 +62,30 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                 }
             }
         }
+        collectFlow(viewModel.getPlanEntityBySearch) {
+            when (it) {
+                is Resource.Loading -> {
+                    setViewVisibility(visibilityForProgressBar = View.VISIBLE)
+                }
+                is Resource.Error -> {
+                    setViewVisibility(visibilityForTextViewError = View.VISIBLE)
+                }
+                is Resource.Success -> {
+                    if (it.data.isNotEmpty()) {
+                        adapter.submitList(it.data)
+                        setViewVisibility(visibilityForRecyclerview = View.VISIBLE)
+                    } else {
+                        setViewVisibility(visibilityForTextViewEmptyList = View.VISIBLE)
+                    }
+                }
+            }
+        }
     }
 
     private fun initView() {
         with(binding) {
+            recyclerView.adapter = adapter
+
             imageButtonBack.setOnClickListener {
                 findNavController().popBackStack()
             }
@@ -73,7 +97,33 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                     viewModel.deleteAllPlans()
                 }
             }
-            recyclerView.adapter = adapter
+
+            buttonSearch.setOnClickListener {
+                isSearchVisible = !isSearchVisible
+                if (isSearchVisible) {
+                    textInputSearch.visibility = View.VISIBLE
+                } else {
+                    textInputSearch.visibility = View.GONE
+                }
+            }
+
+            editTextSearch.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                override fun afterTextChanged(s: Editable?) {
+                    if (s == null || s.toString().isEmpty()) {
+                        viewModel.getAllPlan()
+                    } else {
+                        viewModel.getPlanEntityBySearch(s.toString())
+                    }
+                }
+            })
         }
     }
 

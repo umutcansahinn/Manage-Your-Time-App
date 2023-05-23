@@ -12,4 +12,5 @@ interface PlanRepository {
     fun getAllPlanEntity(): Flow<List<PlanEntity>>
     fun getPlanEntityById(entityId: Int): Flow<PlanEntity>
 
+    fun getPlanEntityBySearch(search: String): Flow<List<PlanEntity>>
 }

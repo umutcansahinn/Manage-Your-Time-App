@@ -44,6 +44,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonFilter"/>
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/buttonSearch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/empty"
+        android:src="@drawable/baseline_search_24"
+        android:background="@drawable/custom_back_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/buttonDeleteAll"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputSearch"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:hint="@string/search"
+        android:visibility="gone"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageButtonBack"
+        app:startIconDrawable="@drawable/baseline_search_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -56,7 +90,7 @@
         android:orientation="vertical"
         app:spanCount="1"
         tools:listitem="@layout/plan_adapter_item"
-        app:layout_constraintTop_toBottomOf="@id/imageButtonBack"
+        app:layout_constraintTop_toBottomOf="@id/textInputSearch"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ProgressBar
