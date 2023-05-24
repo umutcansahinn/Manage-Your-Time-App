@@ -5,12 +5,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
-import com.umutcansahin.manageyourtime.common.Resource
-import com.umutcansahin.manageyourtime.common.RoomResponse
-import com.umutcansahin.manageyourtime.common.collectFlow
-import com.umutcansahin.manageyourtime.common.showAlertDialog
+import com.umutcansahin.manageyourtime.common.*
 import com.umutcansahin.manageyourtime.databinding.FragmentAllPlanBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,12 +18,21 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
     private val adapter = PlanAdapter(::itemSetClick)
 
     private var isSearchVisible = false
+    private var filter = Filter()
+    private val args: AllPlanFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getAllPlan()
+        getInfoFromArgs()
         initView()
         observeData()
+    }
+
+    private fun getInfoFromArgs() {
+        args.filter?.let {
+            filter = it
+            viewModel.filter(filter)
+        }
     }
 
     private fun observeData() {
@@ -98,6 +105,14 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                 }
             }
 
+            buttonFilter.setOnClickListener {
+                findNavController().navigate(
+                    AllPlanFragmentDirections.actionAllPlanFragmentToFilterFragment(
+                        filter = filter
+                    )
+                )
+            }
+
             buttonSearch.setOnClickListener {
                 isSearchVisible = !isSearchVisible
                 if (isSearchVisible) {
@@ -115,6 +130,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                     after: Int
                 ) {
                 }
+
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                 override fun afterTextChanged(s: Editable?) {
                     if (s == null || s.toString().isEmpty()) {

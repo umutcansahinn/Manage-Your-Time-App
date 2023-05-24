@@ -1,8 +1,6 @@
 package com.umutcansahin.manageyourtime.di
 
-import android.app.Application
 import androidx.room.Room
-import com.umutcansahin.manageyourtime.data.local.PlanDao
 import com.umutcansahin.manageyourtime.data.local.PlanDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module

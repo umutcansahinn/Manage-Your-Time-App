@@ -22,4 +22,6 @@ val useCaseModule = module {
 
     factory<GetPlanEntityBySearchUseCase> { GetPlanEntityBySearchUseCaseImpl(planRepository = get()) }
 
+    factory<GetPlanEntityByFilterUseCase> { GetPlanEntityByFilterUseCaseImpl(planRepository = get()) }
+
 }

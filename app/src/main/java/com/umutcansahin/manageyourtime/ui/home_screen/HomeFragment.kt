@@ -25,7 +25,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 )
             }
             allListScreen.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAllPlanFragment())
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAllPlanFragment(filter = null))
             }
         }
     }

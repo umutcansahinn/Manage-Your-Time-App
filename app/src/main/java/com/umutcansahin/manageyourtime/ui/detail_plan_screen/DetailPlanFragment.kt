@@ -1,4 +1,4 @@
-package com.umutcansahin.manageyourtime.ui.detail_plan
+package com.umutcansahin.manageyourtime.ui.detail_plan_screen
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -27,11 +27,11 @@ class DetailPlanFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        getInfoFromArgs()
         observeData()
     }
 
-    private fun initView() {
+    private fun getInfoFromArgs() {
         val entityId = args.entityId
         viewModel.getPlanEntityById(entityId)
     }

@@ -46,7 +46,8 @@ fun <T> Fragment.collectFlow(
 }
 
 val String.Companion.EMPTY: String by lazy { "" }
-val Int.Companion.MINUS_ONE: Int by lazy { -1 }
+val String.Companion.START_TIME: String by lazy { "0" }
+val String.Companion.END_TIME: String by lazy { "99999" }
 val Long.Companion.THOUSAND: Long by lazy { 1_000 }
 
 fun Long.convertToMinuteAndSecond(): String {

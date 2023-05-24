@@ -34,5 +34,17 @@
     <string name="do_you_want_to_delete_this_plan">Do you want to delete this plan?</string>
     <string name="alert_dialog_delete_all_message">Do you want to delete all plans?</string>
     <string name="search">Search</string>
+    <string name="time">Time</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="item_type">Item Type</string>
+    <string name="all_item">All Item</string>
+    <string name="is_favorite">Is Favorite</string>
+    <string name="is_not_favorite">Is Not Favorite</string>
+    <string name="sortedby">SortedBy</string>
+    <string name="descending">Descending</string>
+    <string name="ascending">Ascending</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
 
 </resources>
