@@ -160,10 +160,25 @@
             </RadioGroup>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonReset"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/reset"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:backgroundTint="@color/blue"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toStartOf="@id/buttonCancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioGroupSortedBy" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginStart="48dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/custom_button"
                 android:text="@string/cancel"
@@ -172,7 +187,7 @@
                 android:textSize="20sp"
                 app:backgroundTint="@color/red"
                 app:layout_constraintEnd_toStartOf="@id/buttonApply"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buttonReset"
                 app:layout_constraintTop_toBottomOf="@id/radioGroupSortedBy" />
 
             <com.google.android.material.button.MaterialButton

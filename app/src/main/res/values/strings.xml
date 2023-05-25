@@ -46,5 +46,6 @@
     <string name="ascending">Ascending</string>
     <string name="cancel">Cancel</string>
     <string name="apply">Apply</string>
+    <string name="reset">Reset</string>
 
 </resources>

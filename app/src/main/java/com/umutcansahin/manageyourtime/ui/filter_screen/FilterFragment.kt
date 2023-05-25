@@ -96,6 +96,10 @@ class FilterFragment : BottomSheetDialogFragment() {
                     )
                 )
             }
+            buttonReset.setOnClickListener {
+                filter = Filter()
+                initView()
+            }
             buttonApply.setOnClickListener {
                 filter.startTime = editTextStartTime.text.toString()
                 filter.endTime = editTextEndTime.text.toString()
@@ -110,6 +114,7 @@ class FilterFragment : BottomSheetDialogFragment() {
                     checkBoxIsNotFavoriteItem.isChecked -> {
                         filter.favoriteType = FavoriteType.IS_NOT_FAVORITE_ITEM
                     }
+                    else-> filter.favoriteType = FavoriteType.ALL_ITEM
                 }
                 when {
                     radioButtonDesc.isChecked -> {
