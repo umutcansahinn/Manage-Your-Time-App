@@ -18,7 +18,7 @@ class GetPlanEntityByIdUseCaseImpl(
                 emit(Resource.Success(data = it))
             }
         } catch (e: Exception) {
-            emit(Resource.Error(e.message ?: String.EMPTY))
+            emit(Resource.Error(e.message))
         }
     }
 }

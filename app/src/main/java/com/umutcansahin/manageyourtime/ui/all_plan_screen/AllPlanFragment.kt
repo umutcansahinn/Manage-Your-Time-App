@@ -94,7 +94,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
             recyclerView.adapter = adapter
 
             imageButtonBack.setOnClickListener {
-                findNavController().popBackStack()
+                findNavController().navigate(AllPlanFragmentDirections.actionAllPlanFragmentToHomeFragment())
             }
             buttonDeleteAll.setOnClickListener {
                 requireContext().showAlertDialog(
