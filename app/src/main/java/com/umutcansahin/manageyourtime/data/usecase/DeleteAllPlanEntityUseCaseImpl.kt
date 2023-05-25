@@ -12,7 +12,6 @@ class DeleteAllPlanEntityUseCaseImpl(
 ) : DeleteAllPlanEntityUseCase {
 
     override suspend fun invoke(): Flow<RoomResponse> = flow {
-        emit(RoomResponse.Loading)
         try {
             planRepository.deleteAllPlanEntity()
             emit(RoomResponse.Success)

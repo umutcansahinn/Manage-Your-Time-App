@@ -13,7 +13,6 @@ class DeletePlanUseCaseImpl(
 ) : DeletePlanUseCase {
 
     override suspend fun invoke(planEntity: PlanEntity): Flow<RoomResponse> = flow {
-        emit(RoomResponse.Loading)
         try {
             planRepository.deletePlan(planEntity)
             emit(RoomResponse.Success)

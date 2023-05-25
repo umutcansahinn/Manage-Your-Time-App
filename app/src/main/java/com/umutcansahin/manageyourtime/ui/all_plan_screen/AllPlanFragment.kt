@@ -59,9 +59,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                 is RoomResponse.Success -> {
                     setViewVisibility(visibilityForTextViewEmptyList = View.VISIBLE)
                 }
-                is RoomResponse.Loading -> {
-                    setViewVisibility(visibilityForProgressBar = View.VISIBLE)
-                }
+                is RoomResponse.Loading -> {}
                 is RoomResponse.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
                     binding.textViewError.text =
@@ -71,11 +69,11 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
         }
         collectFlow(viewModel.getPlanEntityBySearch) {
             when (it) {
-                is Resource.Loading -> {
-                    setViewVisibility(visibilityForProgressBar = View.VISIBLE)
-                }
+                is Resource.Loading -> {}
                 is Resource.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
+                    binding.textViewError.text =
+                        requireContext().getString(R.string.please_try_again_later)
                 }
                 is Resource.Success -> {
                     if (it.data.isNotEmpty()) {

@@ -12,7 +12,6 @@ class AddOrDeleteFromFavoriteUseCaseImpl(
     private val planRepository: PlanRepository
 ) : AddOrDeleteFromFavoriteUseCase {
     override suspend fun invoke(entity: PlanEntity): Flow<RoomResponse> = flow {
-        emit(RoomResponse.Loading)
         try {
             planRepository.updatePlan(entity)
             emit(RoomResponse.Success)

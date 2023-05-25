@@ -58,9 +58,7 @@ class DetailPlanFragment :
                     setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
                     findNavController().popBackStack()
                 }
-                is RoomResponse.Loading -> {
-                    setViewVisibility(visibilityForProgressBar = View.VISIBLE)
-                }
+                is RoomResponse.Loading -> {}
                 is RoomResponse.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
                     binding.textViewError.text =
@@ -73,9 +71,7 @@ class DetailPlanFragment :
                 is RoomResponse.Success -> {
                     setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
                 }
-                is RoomResponse.Loading -> {
-                    setViewVisibility(visibilityForProgressBar = View.VISIBLE)
-                }
+                is RoomResponse.Loading -> {}
                 is RoomResponse.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
                     binding.textViewError.text =

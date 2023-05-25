@@ -32,13 +32,13 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                 }
                 is RoomResponse.Error -> {
                     when (it.errorType) {
-                        ErrorType.NAME_IS_NULL_OR_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.name_is_not_null_or_blank))
-                        ErrorType.NAME_IS_EMPTY_ERROR ->
+                        ErrorType.NAME_IS_NULL_ERROR ->
+                            requireContext().showToast(getString(R.string.name_is_not_null))
+                        ErrorType.TIME_IS_NULL_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_null))
+                        ErrorType.NAME_IS_BLANK_ERROR ->
                             requireContext().showToast(getString(R.string.name_is_not_empty))
-                        ErrorType.TIME_IS_NULL_OR_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_null_or_blank))
-                        ErrorType.TIME_IS_EMPTY_ERROR ->
+                        ErrorType.TIME_IS_BLANK_ERROR ->
                             requireContext().showToast(getString(R.string.time_is_not_empty))
                         ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
                             requireContext().showToast(getString(R.string.time_is_not_equals_zero))
@@ -57,13 +57,13 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                 }
                 is RoomResponse.Error -> {
                     when (it.errorType) {
-                        ErrorType.NAME_IS_NULL_OR_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.name_is_not_null_or_blank))
-                        ErrorType.NAME_IS_EMPTY_ERROR ->
+                        ErrorType.NAME_IS_NULL_ERROR ->
+                            requireContext().showToast(getString(R.string.name_is_not_null))
+                        ErrorType.TIME_IS_NULL_ERROR ->
+                            requireContext().showToast(getString(R.string.time_is_not_null))
+                        ErrorType.NAME_IS_BLANK_ERROR ->
                             requireContext().showToast(getString(R.string.name_is_not_empty))
-                        ErrorType.TIME_IS_NULL_OR_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_null_or_blank))
-                        ErrorType.TIME_IS_EMPTY_ERROR ->
+                        ErrorType.TIME_IS_BLANK_ERROR ->
                             requireContext().showToast(getString(R.string.time_is_not_empty))
                         ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
                             requireContext().showToast(getString(R.string.time_is_not_equals_zero))

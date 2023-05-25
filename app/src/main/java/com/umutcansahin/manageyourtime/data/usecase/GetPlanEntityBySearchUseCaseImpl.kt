@@ -11,7 +11,6 @@ class GetPlanEntityBySearchUseCaseImpl(
     private val planRepository: PlanRepository
 ) : GetPlanEntityBySearchUseCase {
     override fun invoke(search: String): Flow<Resource<List<PlanEntity>>> = flow {
-        emit(Resource.Loading)
         try {
             planRepository.getPlanEntityBySearch(search).collect {
                 emit(Resource.Success(it))

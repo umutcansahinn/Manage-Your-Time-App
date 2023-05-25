@@ -10,17 +10,15 @@ import kotlinx.coroutines.flow.flow
 class AddPlanUseCaseImpl(
     private val planRepository: PlanRepository
 ) : AddPlanUseCase {
-
     override fun invoke(
         name: String?,
         time: String?
     ): Flow<RoomResponse> = flow {
-        emit(RoomResponse.Loading)
         when {
-            name.isNullOrBlank() -> emit(RoomResponse.Error(ErrorType.NAME_IS_NULL_OR_BLANK_ERROR))
-            name.isEmpty() -> emit(RoomResponse.Error(ErrorType.NAME_IS_EMPTY_ERROR))
-            time.isNullOrBlank() -> emit(RoomResponse.Error(ErrorType.TIME_IS_NULL_OR_BLANK_ERROR))
-            time.isEmpty() -> emit(RoomResponse.Error(ErrorType.TIME_IS_EMPTY_ERROR))
+            name == null -> emit(RoomResponse.Error(ErrorType.NAME_IS_NULL_ERROR))
+            time == null -> emit(RoomResponse.Error(ErrorType.TIME_IS_NULL_ERROR))
+            name.isBlank()-> emit(RoomResponse.Error(ErrorType.NAME_IS_BLANK_ERROR))
+            time.isBlank()-> emit(RoomResponse.Error(ErrorType.TIME_IS_BLANK_ERROR))
             time.toIntAndCheckIfEqualsZero() -> emit(RoomResponse.Error(ErrorType.TIME_IS_EQUALS_ZERO_ERROR))
             else -> {
                 try {

@@ -1,6 +1,5 @@
 package com.umutcansahin.manageyourtime.data.usecase
 
-import com.umutcansahin.manageyourtime.common.EMPTY
 import com.umutcansahin.manageyourtime.common.Resource
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.repository.PlanRepository
