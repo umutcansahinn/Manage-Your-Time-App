@@ -16,7 +16,6 @@ val viewModelModule = module {
     }
     viewModel {
         AllPlanViewModel(
-            getAllPlanEntityUseCase = get(),
             deleteAllPlanEntityUseCase = get(),
             getPlanEntityBySearchUseCase = get(),
             getPlanEntityByFilterUseCase = get()

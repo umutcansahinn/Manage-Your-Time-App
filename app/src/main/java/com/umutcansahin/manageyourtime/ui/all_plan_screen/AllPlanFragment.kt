@@ -23,6 +23,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.filter(filter)
         getInfoFromArgs()
         initView()
         observeData()
@@ -36,7 +37,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
     }
 
     private fun observeData() {
-        collectFlow(viewModel.getAllPlanEntity) {
+        collectFlow(viewModel.getPlanEntityByFilter) {
             when (it) {
                 is Resource.Loading -> {
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
@@ -111,6 +112,11 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                 )
             }
 
+            if (isSearchVisible) {
+                textInputSearch.visibility = View.VISIBLE
+            } else {
+                textInputSearch.visibility = View.GONE
+            }
             buttonSearch.setOnClickListener {
                 isSearchVisible = !isSearchVisible
                 if (isSearchVisible) {
@@ -119,6 +125,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                     textInputSearch.visibility = View.GONE
                 }
             }
+
 
             editTextSearch.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
@@ -132,7 +139,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                 override fun afterTextChanged(s: Editable?) {
                     if (s == null || s.toString().isEmpty()) {
-                        viewModel.getAllPlan()
+                        viewModel.filter(filter)
                     } else {
                         viewModel.getPlanEntityBySearch(s.toString())
                     }
