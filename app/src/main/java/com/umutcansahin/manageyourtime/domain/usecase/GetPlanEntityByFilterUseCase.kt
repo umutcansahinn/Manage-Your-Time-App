@@ -1,8 +1,8 @@
 package com.umutcansahin.manageyourtime.domain.usecase
 
-import com.umutcansahin.manageyourtime.common.FavoriteType
 import com.umutcansahin.manageyourtime.common.Resource
-import com.umutcansahin.manageyourtime.common.SortedBy
+import com.umutcansahin.manageyourtime.common.filter.FavoriteType
+import com.umutcansahin.manageyourtime.common.filter.SortedBy
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import kotlinx.coroutines.flow.Flow
 

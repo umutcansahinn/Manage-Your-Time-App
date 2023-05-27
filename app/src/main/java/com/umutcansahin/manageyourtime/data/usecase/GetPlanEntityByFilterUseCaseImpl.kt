@@ -1,9 +1,9 @@
 package com.umutcansahin.manageyourtime.data.usecase
 
-import com.umutcansahin.manageyourtime.common.FavoriteType
 import com.umutcansahin.manageyourtime.common.Resource
-import com.umutcansahin.manageyourtime.common.SortedBy
 import com.umutcansahin.manageyourtime.common.convertToMillisecond
+import com.umutcansahin.manageyourtime.common.filter.FavoriteType
+import com.umutcansahin.manageyourtime.common.filter.SortedBy
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.repository.PlanRepository
 import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityByFilterUseCase

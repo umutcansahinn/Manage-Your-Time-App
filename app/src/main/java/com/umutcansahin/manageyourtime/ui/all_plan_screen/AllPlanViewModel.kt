@@ -3,6 +3,7 @@ package com.umutcansahin.manageyourtime.ui.all_plan_screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umutcansahin.manageyourtime.common.*
+import com.umutcansahin.manageyourtime.common.filter.Filter
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.usecase.DeleteAllPlanEntityUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityByFilterUseCase

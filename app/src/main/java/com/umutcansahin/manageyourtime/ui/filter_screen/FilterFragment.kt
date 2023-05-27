@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.umutcansahin.manageyourtime.common.FavoriteType
-import com.umutcansahin.manageyourtime.common.Filter
-import com.umutcansahin.manageyourtime.common.SortedBy
+import com.umutcansahin.manageyourtime.common.filter.FavoriteType
+import com.umutcansahin.manageyourtime.common.filter.Filter
+import com.umutcansahin.manageyourtime.common.filter.SortedBy
 import com.umutcansahin.manageyourtime.databinding.FragmentFilterBinding
 
 

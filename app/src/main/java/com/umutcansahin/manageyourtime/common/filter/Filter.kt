@@ -1,6 +1,8 @@
-package com.umutcansahin.manageyourtime.common
+package com.umutcansahin.manageyourtime.common.filter
 
 import android.os.Parcelable
+import com.umutcansahin.manageyourtime.common.END_TIME
+import com.umutcansahin.manageyourtime.common.START_TIME
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -11,12 +13,4 @@ data class Filter(
     var endTime: String = String.END_TIME
 ):Parcelable
 
-enum class SortedBy {
-    DESC, ASC
-}
 
-enum class FavoriteType {
-    ALL_ITEM,
-    IS_FAVORITE_ITEM,
-    IS_NOT_FAVORITE_ITEM
-}

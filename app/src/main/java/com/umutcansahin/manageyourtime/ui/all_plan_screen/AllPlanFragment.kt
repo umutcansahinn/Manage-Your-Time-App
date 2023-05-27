@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.*
+import com.umutcansahin.manageyourtime.common.filter.Filter
 import com.umutcansahin.manageyourtime.databinding.FragmentAllPlanBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

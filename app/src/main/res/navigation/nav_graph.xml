@@ -43,7 +43,7 @@
             app:destination="@id/filterFragment" />
         <argument
             android:name="filter"
-            app:argType="com.umutcansahin.manageyourtime.common.Filter"
+            app:argType="com.umutcansahin.manageyourtime.common.filter.Filter"
             app:nullable="true" />
         <action
             android:id="@+id/action_allPlanFragment_to_homeFragment"
@@ -68,7 +68,7 @@
         tools:layout="@layout/fragment_filter" >
         <argument
             android:name="filter"
-            app:argType="com.umutcansahin.manageyourtime.common.Filter" />
+            app:argType="com.umutcansahin.manageyourtime.common.filter.Filter" />
         <action
             android:id="@+id/action_filterFragment_to_allPlanFragment"
             app:destination="@id/allPlanFragment" />

@@ -22,11 +22,11 @@ fun Context.showAlertDialog(
     AlertDialog.Builder(this)
         .setTitle(title)
         .setMessage(message)
-        .setPositiveButton("Yes") { _, _ ->
+        .setPositiveButton(String.YES) { _, _ ->
             positiveButton.invoke()
         }
         .setCancelable(true)
-        .setNegativeButton("No") { dialog, _ ->
+        .setNegativeButton(String.NO) { dialog, _ ->
             dialog.cancel()
         }.show()
 }
@@ -49,6 +49,8 @@ val String.Companion.EMPTY: String by lazy { "" }
 val String.Companion.START_TIME: String by lazy { "0" }
 val String.Companion.END_TIME: String by lazy { "99999" }
 val Long.Companion.THOUSAND: Long by lazy { 1_000 }
+val String.Companion.YES: String by lazy { "YES" }
+val String.Companion.NO: String by lazy { "NO" }
 
 fun Long.convertToMinuteAndSecond(): String {
     val minute = (this / 60_000).toInt()
