@@ -48,4 +48,12 @@
     <string name="apply">Apply</string>
     <string name="reset">Reset</string>
 
+    <string name="saved">Saved</string>
+    <string name="updated">Updated</string>
+    <string name="deleted">Deleted</string>
+    <string name="title_error">please check title!</string>
+    <string name="time_error">please check time!</string>
+    <string name="time_zero_error">time can not be 0!</string>
+    <string name="default_error">please try again later</string>
+    <string name="info_for_time">"Please enter the time in minutes (e.g., 45 minutes)."</string>
 </resources>

@@ -10,6 +10,7 @@ import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.*
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.databinding.FragmentDetailPlanBinding
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailPlanFragment :
@@ -54,29 +55,19 @@ class DetailPlanFragment :
         }
         collectFlow(viewModel.deleteEntity) {
             when (it) {
-                is RoomResponse.Success -> {
-                    setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
-                    findNavController().popBackStack()
-                }
                 is RoomResponse.Loading -> {}
-                is RoomResponse.Error -> {
-                    setViewVisibility(visibilityForTextViewError = View.VISIBLE)
-                    binding.textViewError.text =
-                        requireContext().getString(R.string.please_try_again_later)
+                is RoomResponse.Error -> requireView().showSnackBar(getString(R.string.default_error))
+                is RoomResponse.Success -> {
+                    requireView().showSnackBar(getString(R.string.deleted))
+                    findNavController().popBackStack()
                 }
             }
         }
         collectFlow(viewModel.addOrDeleteFromFavorite) {
             when (it) {
-                is RoomResponse.Success -> {
-                    setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
-                }
                 is RoomResponse.Loading -> {}
-                is RoomResponse.Error -> {
-                    setViewVisibility(visibilityForTextViewError = View.VISIBLE)
-                    binding.textViewError.text =
-                        requireContext().getString(R.string.please_try_again_later)
-                }
+                is RoomResponse.Error -> requireView().showSnackBar(getString(R.string.default_error))
+                is RoomResponse.Success -> {}
             }
         }
     }

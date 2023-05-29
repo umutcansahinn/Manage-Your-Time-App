@@ -26,8 +26,8 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
         super.onViewCreated(view, savedInstanceState)
         viewModel.filter(filter)
         getInfoFromArgs()
-        initView()
         observeData()
+        initView()
     }
 
     private fun getInfoFromArgs() {
@@ -40,11 +40,11 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
     private fun observeData() {
         collectFlow(viewModel.getPlanEntityByFilter) {
             when (it) {
-                is Resource.Loading -> {
+                is Resource.Loading ->
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
-                }
                 is Resource.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
+                    binding.textViewError.text = it.errorMessage
                 }
                 is Resource.Success -> {
                     if (it.data.isNotEmpty()) {
@@ -58,29 +58,20 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
         }
         collectFlow(viewModel.deleteAllPlans) {
             when (it) {
-                is RoomResponse.Success -> {
-                    setViewVisibility(visibilityForTextViewEmptyList = View.VISIBLE)
-                }
+                is RoomResponse.Success ->
+                    requireView().showSnackBar(getString(R.string.deleted))
                 is RoomResponse.Loading -> {}
-                is RoomResponse.Error -> {
-                    setViewVisibility(visibilityForTextViewError = View.VISIBLE)
-                    binding.textViewError.text =
-                        requireContext().getString(R.string.please_try_again_later)
-                }
+                is RoomResponse.Error ->
+                    requireView().showSnackBar(getString(R.string.default_error))
             }
         }
         collectFlow(viewModel.getPlanEntityBySearch) {
             when (it) {
                 is Resource.Loading -> {}
-                is Resource.Error -> {
-                    setViewVisibility(visibilityForTextViewError = View.VISIBLE)
-                    binding.textViewError.text =
-                        requireContext().getString(R.string.please_try_again_later)
-                }
+                is Resource.Error -> requireView().showSnackBar(getString(R.string.default_error))
                 is Resource.Success -> {
                     if (it.data.isNotEmpty()) {
                         adapter.submitList(it.data)
-                        setViewVisibility(visibilityForRecyclerview = View.VISIBLE)
                     } else {
                         setViewVisibility(visibilityForTextViewEmptyList = View.VISIBLE)
                     }

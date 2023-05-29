@@ -23,66 +23,67 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
         getInfoFromNavArgs()
     }
 
-    private fun observeData() {
-        collectFlow(viewModel.addPlanState) {
-            when (it) {
-                is RoomResponse.Success -> {
-                    requireContext().showToast(getString(R.string.succesful))
-                    findNavController().popBackStack()
-                }
-                is RoomResponse.Error -> {
-                    when (it.errorType) {
-                        ErrorType.NAME_IS_NULL_ERROR ->
-                            requireContext().showToast(getString(R.string.name_is_not_null))
-                        ErrorType.TIME_IS_NULL_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_null))
-                        ErrorType.NAME_IS_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.name_is_not_empty))
-                        ErrorType.TIME_IS_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_empty))
-                        ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_equals_zero))
-                        ErrorType.ROOM_DEFAULT_ERROR ->
-                            requireContext().showToast(getString(R.string.please_try_again_later))
-                    }
-                }
-                is RoomResponse.Loading -> {}
+    private fun initView() {
+        with(binding) {
+            textInputTime.setEndIconOnClickListener {
+                requireView().showSnackBar(getString(R.string.info_for_time))
             }
-        }
-        collectFlow(viewModel.updatePlanState) {
-            when (it) {
-                is RoomResponse.Success -> {
-                    requireContext().showToast(getString(R.string.succesful))
-                    findNavController().popBackStack()
-                }
-                is RoomResponse.Error -> {
-                    when (it.errorType) {
-                        ErrorType.NAME_IS_NULL_ERROR ->
-                            requireContext().showToast(getString(R.string.name_is_not_null))
-                        ErrorType.TIME_IS_NULL_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_null))
-                        ErrorType.NAME_IS_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.name_is_not_empty))
-                        ErrorType.TIME_IS_BLANK_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_empty))
-                        ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
-                            requireContext().showToast(getString(R.string.time_is_not_equals_zero))
-                        ErrorType.ROOM_DEFAULT_ERROR ->
-                            requireContext().showToast(getString(R.string.please_try_again_later))
-                    }
-                }
-                is RoomResponse.Loading -> {}
+            imageButtonBack.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }
 
-    private fun initView() {
-        with(binding) {
-            textInputTime.setEndIconOnClickListener {
-                requireContext().showToast(getString(R.string.infomation_toast_message))
+    private fun observeData() {
+        collectFlow(viewModel.addPlanState) {
+            when (it) {
+                is RoomResponse.Loading -> {}
+                is RoomResponse.Success -> {
+                    requireView().showSnackBar(getString(R.string.saved))
+                    findNavController().popBackStack()
+                }
+                is RoomResponse.Error -> {
+                    when (it.errorType) {
+                        ErrorType.NAME_IS_NULL_ERROR ->
+                            requireView().showSnackBar(getString(R.string.title_error))
+                        ErrorType.TIME_IS_NULL_ERROR ->
+                            requireView().showSnackBar(getString(R.string.time_error))
+                        ErrorType.NAME_IS_BLANK_ERROR ->
+                            requireView().showSnackBar(getString(R.string.title_error))
+                        ErrorType.TIME_IS_BLANK_ERROR ->
+                            requireView().showSnackBar(getString(R.string.title_error))
+                        ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
+                            requireView().showSnackBar(getString(R.string.time_zero_error))
+                        ErrorType.ROOM_DEFAULT_ERROR ->
+                            requireView().showSnackBar(getString(R.string.default_error))
+                    }
+                }
             }
-            imageButtonBack.setOnClickListener {
-                findNavController().popBackStack()
+        }
+        collectFlow(viewModel.updatePlanState) {
+            when (it) {
+                is RoomResponse.Loading -> {}
+                is RoomResponse.Success -> {
+                    requireView().showSnackBar(getString((R.string.updated)))
+                    findNavController().popBackStack()
+                }
+                is RoomResponse.Error -> {
+                    when (it.errorType) {
+                        ErrorType.NAME_IS_NULL_ERROR ->
+                            requireView().showSnackBar(getString(R.string.title_error))
+                        ErrorType.TIME_IS_NULL_ERROR ->
+                            requireView().showSnackBar(getString(R.string.time_error))
+                        ErrorType.NAME_IS_BLANK_ERROR ->
+                            requireView().showSnackBar(getString(R.string.title_error))
+                        ErrorType.TIME_IS_BLANK_ERROR ->
+                            requireView().showSnackBar(getString(R.string.title_error))
+                        ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
+                            requireView().showSnackBar(getString(R.string.time_zero_error))
+                        ErrorType.ROOM_DEFAULT_ERROR ->
+                            requireView().showSnackBar(getString(R.string.default_error))
+                    }
+                }
+
             }
         }
     }

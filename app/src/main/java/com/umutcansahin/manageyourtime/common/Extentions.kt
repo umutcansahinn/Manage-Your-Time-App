@@ -2,16 +2,18 @@ package com.umutcansahin.manageyourtime.common
 
 import android.app.AlertDialog
 import android.content.Context
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-fun Context.showToast(message: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(this, message, duration).show()
+fun View.showSnackBar(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Snackbar.make(this,message,duration).show()
 }
 
 fun Context.showAlertDialog(
