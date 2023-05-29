@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.umutcansahin.manageyourtime.R
+import com.umutcansahin.manageyourtime.common.convertToMillisecond
 import com.umutcansahin.manageyourtime.common.filter.FavoriteType
 import com.umutcansahin.manageyourtime.common.filter.Filter
 import com.umutcansahin.manageyourtime.common.filter.SortedBy
+import com.umutcansahin.manageyourtime.common.showToast
 import com.umutcansahin.manageyourtime.databinding.FragmentFilterBinding
 
 
@@ -79,10 +82,12 @@ class FilterFragment : BottomSheetDialogFragment() {
                 checkBoxIsNotFavoriteItem.isChecked = isChecked
             }
             checkBoxIsFavoriteItem.setOnClickListener {
-                checkBoxAllItem.isChecked = checkBoxIsFavoriteItem.isChecked && checkBoxIsNotFavoriteItem.isChecked
+                checkBoxAllItem.isChecked =
+                    checkBoxIsFavoriteItem.isChecked && checkBoxIsNotFavoriteItem.isChecked
             }
             checkBoxIsNotFavoriteItem.setOnClickListener {
-                checkBoxAllItem.isChecked = checkBoxIsFavoriteItem.isChecked && checkBoxIsNotFavoriteItem.isChecked
+                checkBoxAllItem.isChecked =
+                    checkBoxIsFavoriteItem.isChecked && checkBoxIsNotFavoriteItem.isChecked
             }
         }
     }
@@ -101,9 +106,6 @@ class FilterFragment : BottomSheetDialogFragment() {
                 initView()
             }
             buttonApply.setOnClickListener {
-                filter.startTime = editTextStartTime.text.toString()
-                filter.endTime = editTextEndTime.text.toString()
-
                 when {
                     checkBoxAllItem.isChecked -> {
                         filter.favoriteType = FavoriteType.ALL_ITEM
@@ -114,7 +116,7 @@ class FilterFragment : BottomSheetDialogFragment() {
                     checkBoxIsNotFavoriteItem.isChecked -> {
                         filter.favoriteType = FavoriteType.IS_NOT_FAVORITE_ITEM
                     }
-                    else-> filter.favoriteType = FavoriteType.ALL_ITEM
+                    else -> filter.favoriteType = FavoriteType.ALL_ITEM
                 }
                 when {
                     radioButtonDesc.isChecked -> {
@@ -124,11 +126,26 @@ class FilterFragment : BottomSheetDialogFragment() {
                         filter.sortedBy = SortedBy.ASC
                     }
                 }
-                findNavController().navigate(
-                    FilterFragmentDirections.actionFilterFragmentToAllPlanFragment(
-                        filter = filter
-                    )
-                )
+
+                val startTime = editTextStartTime.text.toString()
+                val endTime = editTextEndTime.text.toString()
+                when {
+                    startTime.isNotBlank() && endTime.isNotBlank() && startTime.convertToMillisecond() < endTime.convertToMillisecond() -> {
+                        filter.startTime = startTime
+                        filter.endTime = endTime
+                        findNavController().navigate(
+                            FilterFragmentDirections.actionFilterFragmentToAllPlanFragment(
+                                filter = filter
+                            )
+                        )
+                    }
+                    startTime.isBlank() || endTime.isBlank() -> {
+                        requireContext().showToast(getString(R.string.start_time_end_time))
+                    }
+                    startTime.convertToMillisecond() > endTime.convertToMillisecond() -> {
+                        requireContext().showToast(getString(R.string.not_bigger))
+                    }
+                }
             }
         }
     }

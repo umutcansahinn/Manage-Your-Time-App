@@ -56,4 +56,6 @@
     <string name="time_zero_error">time can not be 0!</string>
     <string name="default_error">please try again later</string>
     <string name="info_for_time">"Please enter the time in minutes (e.g., 45 minutes)."</string>
+    <string name="start_time_end_time">Start time and End Time can not be empty</string>
+    <string name="not_bigger">Start Time can not be bigger than End Time</string>
 </resources>

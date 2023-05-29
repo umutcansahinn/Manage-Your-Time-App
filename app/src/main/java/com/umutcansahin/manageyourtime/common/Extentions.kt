@@ -12,8 +12,11 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-fun View.showSnackBar(message: String, duration: Int = Toast.LENGTH_SHORT) {
-    Snackbar.make(this,message,duration).show()
+fun View.showSnackBar(message: String, view: View = this, duration: Int = Toast.LENGTH_SHORT) {
+    Snackbar.make(view, message, duration).show()
+}
+fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this,message,duration).show()
 }
 
 fun Context.showAlertDialog(
