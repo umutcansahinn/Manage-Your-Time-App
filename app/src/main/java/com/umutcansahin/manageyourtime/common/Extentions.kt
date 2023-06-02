@@ -15,8 +15,9 @@ import kotlinx.coroutines.launch
 fun View.showSnackBar(message: String, view: View = this, duration: Int = Toast.LENGTH_SHORT) {
     Snackbar.make(view, message, duration).show()
 }
+
 fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(this,message,duration).show()
+    Toast.makeText(this, message, duration).show()
 }
 
 fun Context.showAlertDialog(
@@ -54,6 +55,8 @@ val String.Companion.EMPTY: String by lazy { "" }
 val String.Companion.START_TIME: String by lazy { "0" }
 val String.Companion.END_TIME: String by lazy { "99999" }
 val Long.Companion.THOUSAND: Long by lazy { 1_000 }
+val Long.Companion.HUNDRED: Long by lazy { 100 }
+val Long.Companion.TEN: Long by lazy { 10 }
 val String.Companion.YES: String by lazy { "YES" }
 val String.Companion.NO: String by lazy { "NO" }
 

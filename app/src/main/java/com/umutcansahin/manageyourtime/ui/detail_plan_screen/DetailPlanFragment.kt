@@ -10,7 +10,6 @@ import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.*
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.databinding.FragmentDetailPlanBinding
-import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailPlanFragment :
@@ -154,7 +153,7 @@ class DetailPlanFragment :
     private fun timer(pauseTime: Long) {
         countDownTimer = object : CountDownTimer(
             timerStartValue - pauseTime,
-            Long.THOUSAND
+            Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.textViewTime.text = millisUntilFinished.convertToMinuteAndSecond()
