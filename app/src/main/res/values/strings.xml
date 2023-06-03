@@ -61,4 +61,5 @@
     <string name="count_down_timer">Count Down Timer</string>
     <string name="_00_00">00:00</string>
     <string name="time_can_not_be_empty">time can not be empty</string>
+    <string name="stopwatch">Stopwatch</string>
 </resources>

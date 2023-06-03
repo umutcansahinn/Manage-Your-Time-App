@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_countDownTimerFragment"
             app:destination="@id/countDownTimerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_stopWatchFragment"
+            app:destination="@id/stopWatchFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -81,4 +84,13 @@
         android:name="com.umutcansahin.manageyourtime.ui.count_down_timer_screen.CountDownTimerFragment"
         android:label="fragment_count_down_timer"
         tools:layout="@layout/fragment_count_down_timer" />
+    <fragment
+        android:id="@+id/stopWatchFragment"
+        android:name="com.umutcansahin.manageyourtime.ui.stopwatch_screen.StopWatchFragment"
+        android:label="fragment_stop_watch"
+        tools:layout="@layout/fragment_stop_watch" >
+        <action
+            android:id="@+id/action_stopWatchFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

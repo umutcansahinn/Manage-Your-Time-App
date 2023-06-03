@@ -3,6 +3,7 @@ package com.umutcansahin.manageyourtime.ui.home_screen
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.NavType
 import com.umutcansahin.manageyourtime.databinding.FragmentHomeBinding
@@ -32,7 +33,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 )
             }
             countDownTimerScreen.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCountDownTimerFragment())
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToCountDownTimerFragment()
+                )
+            }
+            stopWatchScreen.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_stopWatchFragment
+                )
             }
         }
     }
