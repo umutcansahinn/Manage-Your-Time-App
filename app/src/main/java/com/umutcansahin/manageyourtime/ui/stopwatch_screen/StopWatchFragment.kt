@@ -9,12 +9,12 @@ import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.THOUSAND
 import com.umutcansahin.manageyourtime.common.convertToMinuteAndSecond
 import com.umutcansahin.manageyourtime.databinding.FragmentStopWatchBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class StopWatchFragment :
     BaseFragment<FragmentStopWatchBinding>(FragmentStopWatchBinding::inflate) {
 
-    private val viewModel by viewModel<StopWatchViewModel>()
+    private val viewModel by activityViewModel<StopWatchViewModel>()
     private var countDownTimer: CountDownTimer? = null
     private var isTimerRunning: Boolean = false
 
