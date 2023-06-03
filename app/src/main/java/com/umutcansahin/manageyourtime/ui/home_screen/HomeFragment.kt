@@ -25,7 +25,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 )
             }
             allListScreen.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAllPlanFragment(filter = null))
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToAllPlanFragment(
+                        filter = null
+                    )
+                )
+            }
+            countDownTimerScreen.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCountDownTimerFragment())
             }
         }
     }

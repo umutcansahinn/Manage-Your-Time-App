@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_countDownTimerFragment"
+            app:destination="@id/countDownTimerFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -73,4 +76,9 @@
             android:id="@+id/action_filterFragment_to_allPlanFragment"
             app:destination="@id/allPlanFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/countDownTimerFragment"
+        android:name="com.umutcansahin.manageyourtime.ui.count_down_timer_screen.CountDownTimerFragment"
+        android:label="fragment_count_down_timer"
+        tools:layout="@layout/fragment_count_down_timer" />
 </navigation>
