@@ -11,4 +11,38 @@
     <color name="green">#4CAF50</color>
     <color name="blue">#03A9F4</color>
     <color name="yellow">#FFEB3B</color>
+
+
+    <color name="seed">#006783</color>
+    <color name="md_theme_light_primary">#006783</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_primaryContainer">#BCE9FF</color>
+    <color name="md_theme_light_onPrimaryContainer">#001F29</color>
+    <color name="md_theme_light_secondary">#4C616B</color>
+    <color name="md_theme_light_onSecondary">#FFFFFF</color>
+    <color name="md_theme_light_secondaryContainer">#CFE6F2</color>
+    <color name="md_theme_light_onSecondaryContainer">#081E27</color>
+    <color name="md_theme_light_tertiary">#5C5B7D</color>
+    <color name="md_theme_light_onTertiary">#FFFFFF</color>
+    <color name="md_theme_light_tertiaryContainer">#E2DFFF</color>
+    <color name="md_theme_light_onTertiaryContainer">#191836</color>
+    <color name="md_theme_light_error">#BA1A1A</color>
+    <color name="md_theme_light_errorContainer">#FFDAD6</color>
+    <color name="md_theme_light_onError">#FFFFFF</color>
+    <color name="md_theme_light_onErrorContainer">#410002</color>
+    <color name="md_theme_light_background">#FBFCFE</color>
+    <color name="md_theme_light_onBackground">#191C1E</color>
+    <color name="md_theme_light_surface">#FBFCFE</color>
+    <color name="md_theme_light_onSurface">#191C1E</color>
+    <color name="md_theme_light_surfaceVariant">#DCE4E9</color>
+    <color name="md_theme_light_onSurfaceVariant">#40484C</color>
+    <color name="md_theme_light_outline">#70787D</color>
+    <color name="md_theme_light_inverseOnSurface">#EFF1F3</color>
+    <color name="md_theme_light_inverseSurface">#2E3132</color>
+    <color name="md_theme_light_inversePrimary">#61D4FF</color>
+    <color name="md_theme_light_shadow">#000000</color>
+    <color name="md_theme_light_surfaceTint">#006783</color>
+    <color name="md_theme_light_outlineVariant">#C0C8CC</color>
+    <color name="md_theme_light_scrim">#000000</color>
+
 </resources>
