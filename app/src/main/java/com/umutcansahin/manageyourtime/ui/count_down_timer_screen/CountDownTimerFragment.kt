@@ -31,6 +31,7 @@ class CountDownTimerFragment :
                 textViewTime.text = state.textViewTime
                 textInputTime.isFocusable = state.textInputTimeIsFocusable
                 textInputTime.isEnabled = state.textInputTimeIsEnable
+                if (state.isTimeFinish) textViewTime.text = requireContext().getString(R.string.done)
                 if (state.isTimeNullOrBlank) requireView().showSnackBar(getString(R.string.info_for_time))
             }
         }

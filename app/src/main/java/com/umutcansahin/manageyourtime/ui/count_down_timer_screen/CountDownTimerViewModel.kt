@@ -66,7 +66,7 @@ class CountDownTimerViewModel : ViewModel() {
 
             override fun onFinish() {
                 resetTimer()
-                _state.value = State(textViewTime = "done")
+                _state.value = State().copy(isTimeFinish = true)
             }
         }.start()
     }
@@ -76,5 +76,6 @@ data class State(
     val textViewTime: String = Long.ZERO.convertToMinuteAndSecond(),
     val textInputTimeIsEnable: Boolean = true,
     val textInputTimeIsFocusable: Boolean = true,
-    val isTimeNullOrBlank: Boolean = false
+    val isTimeNullOrBlank: Boolean = false,
+    val isTimeFinish: Boolean = false
 )
