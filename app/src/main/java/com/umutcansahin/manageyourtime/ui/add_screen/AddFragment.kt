@@ -51,7 +51,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(FragmentAddBinding::inflate
                         ErrorType.NAME_IS_BLANK_ERROR ->
                             requireView().showSnackBar(getString(R.string.title_error))
                         ErrorType.TIME_IS_BLANK_ERROR ->
-                            requireView().showSnackBar(getString(R.string.title_error))
+                            requireView().showSnackBar(getString(R.string.time_error))
                         ErrorType.TIME_IS_EQUALS_ZERO_ERROR ->
                             requireView().showSnackBar(getString(R.string.time_zero_error))
                         ErrorType.ROOM_DEFAULT_ERROR ->

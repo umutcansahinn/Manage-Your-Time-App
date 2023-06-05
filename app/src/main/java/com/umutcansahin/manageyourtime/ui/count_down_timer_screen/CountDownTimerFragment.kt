@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.*
@@ -81,6 +82,8 @@ class CountDownTimerFragment :
                 timer(timerPauseValue)
                 isTimerRunning = true
                 binding.textInputTime.isEnabled = false
+            }else {
+                requireView().showSnackBar(getString(R.string.info_for_time))
             }
         }
     }

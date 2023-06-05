@@ -18,6 +18,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/empty" />
+t
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stopwatch"
+        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="@id/imageButtonBack"
+        app:layout_constraintBottom_toBottomOf="@id/imageButtonBack"
+        app:layout_constraintStart_toEndOf="@id/imageButtonBack"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
