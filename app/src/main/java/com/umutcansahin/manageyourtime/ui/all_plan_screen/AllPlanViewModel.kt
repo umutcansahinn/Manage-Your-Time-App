@@ -24,9 +24,6 @@ class AllPlanViewModel(
     private val _deleteAllPlans = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
     val deleteAllPlans = _deleteAllPlans.asStateFlow()
 
-   private val _getPlanEntityBySearch = MutableStateFlow<Resource<List<PlanEntity>>>(Resource.Loading)
-    val getPlanEntityBySearch = _getPlanEntityBySearch.asStateFlow()
-
 
     fun deleteAllPlans() {
         viewModelScope.launch {
@@ -36,9 +33,9 @@ class AllPlanViewModel(
         }
     }
 
-    fun getPlanEntityBySearch(search: String) {
+    fun getPlanEntityBySearch(search: String,filter: Filter) {
         viewModelScope.launch {
-            getPlanEntityBySearchUseCase(search).collect {
+            getPlanEntityBySearchUseCase(search,filter).collect {
                 _getPlanEntityByFilter.value = it
             }
         }

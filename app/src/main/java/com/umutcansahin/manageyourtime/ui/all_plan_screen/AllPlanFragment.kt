@@ -65,19 +65,6 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                     requireView().showSnackBar(getString(R.string.default_error))
             }
         }
-        collectFlow(viewModel.getPlanEntityBySearch) {
-            when (it) {
-                is Resource.Loading -> {}
-                is Resource.Error -> requireView().showSnackBar(getString(R.string.default_error))
-                is Resource.Success -> {
-                    if (it.data.isNotEmpty()) {
-                        adapter.submitList(it.data)
-                    } else {
-                        setViewVisibility(visibilityForTextViewEmptyList = View.VISIBLE)
-                    }
-                }
-            }
-        }
     }
 
     private fun initView() {
@@ -133,7 +120,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                     if (s == null || s.toString().isEmpty()) {
                         viewModel.filter(filter)
                     } else {
-                        viewModel.getPlanEntityBySearch(s.toString())
+                        viewModel.getPlanEntityBySearch(s.toString(),filter)
                     }
                 }
             })
