@@ -15,8 +15,8 @@ class CountDownTimerViewModel : ViewModel() {
     private var countDownTimer: CountDownTimer? = null
     private var isTimerRunning: Boolean = false
 
-    private val _state = MutableStateFlow(State())
-    val state = _state.asSharedFlow()
+    private val _CountDown_state = MutableStateFlow(CountDownState())
+    val state = _CountDown_state.asSharedFlow()
 
     fun startTimer(time: String?) {
         if (!isTimerRunning) {
@@ -24,7 +24,7 @@ class CountDownTimerViewModel : ViewModel() {
                 timer(timerPauseValue)
                 isTimerRunning = true
             } else {
-                _state.value = State().copy(isTimeNullOrBlank = true)
+                _CountDown_state.value = CountDownState().copy(isTimeNullOrBlank = true)
             }
         }
     }
@@ -41,7 +41,7 @@ class CountDownTimerViewModel : ViewModel() {
             timerPauseValue = 0
             isTimerRunning = false
         }
-        _state.value = State(
+        _CountDown_state.value = CountDownState(
             textViewTime = timerStartValue.convertToMinuteAndSecond(),
             textInputTimeIsEnable = true,
             textInputTimeIsFocusable = true,
@@ -55,7 +55,7 @@ class CountDownTimerViewModel : ViewModel() {
             Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
-                _state.value = State().copy(
+                _CountDown_state.value = CountDownState().copy(
                     textViewTime = millisUntilFinished.convertToMinuteAndSecond(),
                     textInputTimeIsEnable = false,
                     textInputTimeIsFocusable = false,
@@ -66,13 +66,13 @@ class CountDownTimerViewModel : ViewModel() {
 
             override fun onFinish() {
                 resetTimer()
-                _state.value = State().copy(isTimeFinish = true)
+                _CountDown_state.value = CountDownState().copy(isTimeFinish = true)
             }
         }.start()
     }
 }
 
-data class State(
+data class CountDownState(
     val textViewTime: String = Long.ZERO.convertToMinuteAndSecond(),
     val textInputTimeIsEnable: Boolean = true,
     val textInputTimeIsFocusable: Boolean = true,

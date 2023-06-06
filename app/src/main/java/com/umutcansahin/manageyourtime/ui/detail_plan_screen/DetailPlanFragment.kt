@@ -1,7 +1,6 @@
 package com.umutcansahin.manageyourtime.ui.detail_plan_screen
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,13 +16,6 @@ class DetailPlanFragment :
 
     private val viewModel by viewModel<DetailPlanViewModel>()
     private val args: DetailPlanFragmentArgs by navArgs()
-
-    private var timerStartValue: Long = 0
-    private var timerPauseValue: Long = 0
-    private var countDownTimer: CountDownTimer? = null
-    private var isTimerRunning: Boolean = false
-
-    private var isFavorite = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,6 +61,13 @@ class DetailPlanFragment :
                 is RoomResponse.Success -> {}
             }
         }
+        collectFlow(viewModel.state2) {state->
+            with(binding) {
+                textViewTime.text = state.textViewTime
+                if (state.isTimeFinish) textViewTime.text = requireContext().getString(R.string.done)
+                if (state.isTimeNullOrBlank) requireView().showSnackBar(getString(R.string.info_for_time))
+            }
+        }
     }
 
     private fun setViewVisibility(
@@ -84,10 +83,11 @@ class DetailPlanFragment :
     }
 
     private fun setUi(entity: PlanEntity) {
-        timerStartValue = entity.time
+        viewModel.timerStartValue = entity.time
         with(binding) {
             textViewTitle.text = entity.name
-            textViewTime.text = (timerStartValue - timerPauseValue).convertToMinuteAndSecond()
+            textViewTime.text =
+                (viewModel.timerStartValue - viewModel.timerPauseValue).convertToMinuteAndSecond()
             if (entity.favorite) {
                 imageButtonFavorite.setImageResource(R.drawable.baseline_star_24)
             } else {
@@ -113,69 +113,24 @@ class DetailPlanFragment :
                 findNavController().popBackStack()
             }
             imageButtonStartTimer.setOnClickListener {
-                startTimer()
+                viewModel.startTimer()
             }
             imageButtonStopTimer.setOnClickListener {
-                pauseTimer()
+                viewModel.pauseTimer()
             }
             imageButtonResetTimer.setOnClickListener {
-                resetTimer()
+                viewModel.resetTimer()
             }
             imageButtonFavorite.setOnClickListener {
-                isFavorite = !isFavorite
-                viewModel.addOrDeleteFromFavorite(entity.copy(favorite = isFavorite))
+                viewModel.isFavorite = viewModel.isFavorite.not()
+                viewModel.addOrDeleteFromFavorite(entity.copy(favorite = viewModel.isFavorite))
             }
         }
     }
-
-    private fun startTimer() {
-        if (!isTimerRunning) {
-            timer(timerPauseValue)
-            isTimerRunning = true
-        }
-    }
-
-    private fun pauseTimer() {
-        countDownTimer?.cancel()
-        isTimerRunning = false
-    }
-
-    private fun resetTimer() {
-        if (countDownTimer != null) {
-            countDownTimer!!.cancel()
-            countDownTimer = null
-            timerPauseValue = 0
-            isTimerRunning = false
-        }
-        binding.textViewTime.text = timerStartValue.convertToMinuteAndSecond()
-    }
-
-    private fun timer(pauseTime: Long) {
-        countDownTimer = object : CountDownTimer(
-            timerStartValue - pauseTime,
-            Long.HUNDRED
-        ) {
-            override fun onTick(millisUntilFinished: Long) {
-                binding.textViewTime.text = millisUntilFinished.convertToMinuteAndSecond()
-                timerPauseValue = timerStartValue - millisUntilFinished
-            }
-
-            override fun onFinish() {
-                resetTimer()
-                binding.textViewTime.text = requireContext().getString(R.string.done)
-            }
-        }.start()
-    }
-
 
     override fun onStop() {
-        pauseTimer()
+        viewModel.pauseTimer()
         super.onStop()
 
-    }
-
-    override fun onDestroyView() {
-        countDownTimer?.cancel()
-        super.onDestroyView()
     }
 }
