@@ -15,8 +15,8 @@ class CountDownTimerViewModel : ViewModel() {
     private var countDownTimer: CountDownTimer? = null
     private var isTimerRunning: Boolean = false
 
-    private val _CountDown_state = MutableStateFlow(CountDownState())
-    val state = _CountDown_state.asSharedFlow()
+    private val _countDownState = MutableStateFlow(CountDownState())
+    val state = _countDownState.asSharedFlow()
 
     fun startTimer(time: String?) {
         if (!isTimerRunning) {
@@ -24,7 +24,7 @@ class CountDownTimerViewModel : ViewModel() {
                 timer(timerPauseValue)
                 isTimerRunning = true
             } else {
-                _CountDown_state.value = CountDownState().copy(isTimeNullOrBlank = true)
+                _countDownState.value = CountDownState().copy(isTimeNullOrBlank = true)
             }
         }
     }
@@ -41,7 +41,7 @@ class CountDownTimerViewModel : ViewModel() {
             timerPauseValue = 0
             isTimerRunning = false
         }
-        _CountDown_state.value = CountDownState(
+        _countDownState.value = CountDownState(
             textViewTime = timerStartValue.convertToMinuteAndSecond(),
             textInputTimeIsEnable = true,
             textInputTimeIsFocusable = true,
@@ -55,7 +55,7 @@ class CountDownTimerViewModel : ViewModel() {
             Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
-                _CountDown_state.value = CountDownState().copy(
+                _countDownState.value = CountDownState().copy(
                     textViewTime = millisUntilFinished.convertToMinuteAndSecond(),
                     textInputTimeIsEnable = false,
                     textInputTimeIsFocusable = false,
@@ -66,7 +66,7 @@ class CountDownTimerViewModel : ViewModel() {
 
             override fun onFinish() {
                 resetTimer()
-                _CountDown_state.value = CountDownState().copy(isTimeFinish = true)
+                _countDownState.value = CountDownState().copy(isTimeFinish = true)
             }
         }.start()
     }
