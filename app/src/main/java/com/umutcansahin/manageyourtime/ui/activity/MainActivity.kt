@@ -1,11 +1,10 @@
-package com.umutcansahin.manageyourtime
+package com.umutcansahin.manageyourtime.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.umutcansahin.manageyourtime.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,10 +16,16 @@ class MainActivity : AppCompatActivity() {
     //ca-app-pub-3940256099942544~3347511713 --> test1
 
     private lateinit var binding: ActivityMainBinding
-
+    private val mainViewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        mainViewModel.splash()
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                mainViewModel.isLoading.value
+            }
+        }
         setContentView(binding.root)
 
         MobileAds.initialize(this) {}
