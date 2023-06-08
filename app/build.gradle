@@ -70,4 +70,7 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //admob
+    implementation 'com.google.android.gms:play-services-ads:22.1.0'
 }
