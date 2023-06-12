@@ -63,4 +63,12 @@
     <string name="_00_00">00:00</string>
     <string name="time_can_not_be_empty">time can not be empty</string>
     <string name="stopwatch">Stopwatch</string>
+    <string name="back_page">back page</string>
+    <string name="time_start">time start</string>
+    <string name="time_stop">time stop</string>
+    <string name="time_reset">time reset</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="on_boarding">onBoarding</string>
+    <string name="finished">finished</string>
 </resources>
