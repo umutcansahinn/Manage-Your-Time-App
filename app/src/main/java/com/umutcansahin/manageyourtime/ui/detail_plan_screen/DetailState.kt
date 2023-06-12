@@ -1,7 +1,7 @@
 package com.umutcansahin.manageyourtime.ui.detail_plan_screen
 
-import com.umutcansahin.manageyourtime.common.ZERO
-import com.umutcansahin.manageyourtime.common.convertToMinuteAndSecond
+import com.umutcansahin.manageyourtime.common.extensions.ZERO
+import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 
 
 data class DetailState(

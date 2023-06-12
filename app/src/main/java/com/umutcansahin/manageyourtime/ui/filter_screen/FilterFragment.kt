@@ -8,11 +8,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.umutcansahin.manageyourtime.R
-import com.umutcansahin.manageyourtime.common.convertToMillisecond
+import com.umutcansahin.manageyourtime.common.extensions.convertToMillisecond
+import com.umutcansahin.manageyourtime.common.extensions.showToast
 import com.umutcansahin.manageyourtime.common.filter.FavoriteType
 import com.umutcansahin.manageyourtime.common.filter.Filter
 import com.umutcansahin.manageyourtime.common.filter.SortedBy
-import com.umutcansahin.manageyourtime.common.showToast
 import com.umutcansahin.manageyourtime.databinding.FragmentFilterBinding
 
 

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
-import com.umutcansahin.manageyourtime.common.collectFlow
+import com.umutcansahin.manageyourtime.common.extensions.collectFlow
 import com.umutcansahin.manageyourtime.databinding.FragmentStopWatchBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 

@@ -8,7 +8,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
-import com.umutcansahin.manageyourtime.common.*
+import com.umutcansahin.manageyourtime.common.extensions.*
 import com.umutcansahin.manageyourtime.databinding.FragmentCountDownTimerBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 

@@ -1,7 +1,7 @@
 package com.umutcansahin.manageyourtime.ui.all_plan_screen
 
 import androidx.recyclerview.widget.RecyclerView
-import com.umutcansahin.manageyourtime.common.convertToMinuteAndSecond
+import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.databinding.PlanAdapterItemBinding
 

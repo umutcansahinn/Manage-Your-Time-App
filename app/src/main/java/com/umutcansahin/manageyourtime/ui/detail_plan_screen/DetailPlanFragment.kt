@@ -7,6 +7,10 @@ import androidx.navigation.fragment.navArgs
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.*
+import com.umutcansahin.manageyourtime.common.extensions.collectFlow
+import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
+import com.umutcansahin.manageyourtime.common.extensions.showAlertDialog
+import com.umutcansahin.manageyourtime.common.extensions.showSnackBar
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.databinding.FragmentDetailPlanBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -126,7 +130,7 @@ class DetailPlanFragment :
                 viewModel.addOrDeleteFromFavorite(entity.copy(favorite = viewModel.isFavorite))
             }
         }
-    }
+      }
 
     override fun onStop() {
         viewModel.pauseTimer()

@@ -4,6 +4,8 @@ import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umutcansahin.manageyourtime.common.*
+import com.umutcansahin.manageyourtime.common.extensions.HUNDRED
+import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.usecase.AddOrDeleteFromFavoriteUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.DeletePlanUseCase

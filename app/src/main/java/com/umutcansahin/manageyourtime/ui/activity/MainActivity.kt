@@ -1,10 +1,17 @@
 package com.umutcansahin.manageyourtime.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.google.android.gms.ads.*
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.umutcansahin.manageyourtime.R
+import com.umutcansahin.manageyourtime.common.extensions.gone
+import com.umutcansahin.manageyourtime.common.extensions.visible
 import com.umutcansahin.manageyourtime.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel by viewModels<MainViewModel>()
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,5 +40,18 @@ class MainActivity : AppCompatActivity() {
 
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.onBoardingFragment ->{
+                    binding.adView.gone()}
+                else -> {
+                    binding.adView.visible()
+                }
+            }
+        }
     }
 }

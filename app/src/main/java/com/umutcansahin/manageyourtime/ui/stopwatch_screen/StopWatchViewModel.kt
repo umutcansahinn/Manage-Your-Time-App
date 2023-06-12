@@ -2,8 +2,8 @@ package com.umutcansahin.manageyourtime.ui.stopwatch_screen
 
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
-import com.umutcansahin.manageyourtime.common.THOUSAND
-import com.umutcansahin.manageyourtime.common.convertToMinuteAndSecond
+import com.umutcansahin.manageyourtime.common.extensions.THOUSAND
+import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 

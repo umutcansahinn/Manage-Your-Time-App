@@ -2,9 +2,9 @@ package com.umutcansahin.manageyourtime.ui.count_down_timer_screen
 
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
-import com.umutcansahin.manageyourtime.common.HUNDRED
-import com.umutcansahin.manageyourtime.common.ZERO
-import com.umutcansahin.manageyourtime.common.convertToMinuteAndSecond
+import com.umutcansahin.manageyourtime.common.extensions.HUNDRED
+import com.umutcansahin.manageyourtime.common.extensions.ZERO
+import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 

@@ -1,8 +1,8 @@
 package com.umutcansahin.manageyourtime.common.filter
 
 import android.os.Parcelable
-import com.umutcansahin.manageyourtime.common.END_TIME
-import com.umutcansahin.manageyourtime.common.START_TIME
+import com.umutcansahin.manageyourtime.common.extensions.END_TIME
+import com.umutcansahin.manageyourtime.common.extensions.START_TIME
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

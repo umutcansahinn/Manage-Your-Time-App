@@ -1,7 +1,7 @@
 package com.umutcansahin.manageyourtime.data.usecase
 
 import com.umutcansahin.manageyourtime.common.Resource
-import com.umutcansahin.manageyourtime.common.convertToMillisecond
+import com.umutcansahin.manageyourtime.common.extensions.convertToMillisecond
 import com.umutcansahin.manageyourtime.common.filter.FavoriteType
 import com.umutcansahin.manageyourtime.common.filter.Filter
 import com.umutcansahin.manageyourtime.common.filter.SortedBy
