@@ -19,49 +19,39 @@ class CountDownTimerFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textViewTime.text = viewModel.timerStartValue.convertToMinuteAndSecond()
-        binding.editTextTime.setText(viewModel.timerStartValue.convertFromMillisecondToMinute())
         observeData()
         initUi()
     }
 
     private fun observeData() {
         collectFlow(viewModel.state) { state ->
-            with(binding) {
-                textViewTime.text = state.textViewTime
-                textInputTime.isFocusable = state.textInputTimeIsFocusable
-                textInputTime.isEnabled = state.textInputTimeIsEnable
-                if (state.isTimeFinish) textViewTime.text = requireContext().getString(R.string.done)
-                if (state.isTimeNullOrBlank) requireView().showSnackBar(getString(R.string.info_for_time))
-            }
+            setUiWithObservableData(state)
+        }
+    }
+
+    private fun setUiWithObservableData(state: CountDownState) {
+        with(binding) {
+            textViewTime.text = state.timerStartValue.convertToMinuteAndSecond()
+            textInputTime.isFocusable = state.textInputTimeIsFocusable
+            textInputTime.isEnabled = state.textInputTimeIsEnable
+            if (state.isTimeFinish) textViewTime.text = requireContext().getString(R.string.done)
+            if (state.isTimeNullOrBlank) requireView().showSnackBar(getString(R.string.info_for_time))
+
+            progressIndicator.progress = state.timerStartValue.toInt()
+            binding.progressIndicator.max = viewModel.timerStartValue.toInt()
         }
     }
 
     private fun initUi() {
         with(binding) {
+            binding.textViewTime.text = viewModel.timerStartValue.convertToMinuteAndSecond()
+            binding.editTextTime.setText(viewModel.timerStartValue.convertFromMillisecondToMinute())
+            binding.progressIndicator.max = viewModel.timerStartValue.toInt()
+            binding.progressIndicator.progress = viewModel.timerStartValue.toInt()
 
-            editTextTime.addTextChangedListener(object : TextWatcher {
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            editTextChangedListener()
+            editTextDoOnTextChanged()
 
-                override fun afterTextChanged(s: Editable?) {
-                    if (s.isNullOrBlank().not()) {
-                        viewModel.timerStartValue = s.toString().convertToMillisecond()
-                        textViewTime.text =
-                            (viewModel.timerStartValue - viewModel.timerPauseValue).convertToMinuteAndSecond()
-                    } else {
-                        val empty = String.START_TIME.convertToMillisecond()
-                        textViewTime.text = empty.convertToMinuteAndSecond()
-                    }
-                }
-            })
-            editTextTime.doOnTextChanged { text, _, _, _ ->
-                if (text.isNullOrBlank()) {
-                    textInputTime.error = getString(R.string.time_can_not_be_empty)
-                } else {
-                    textInputTime.error = null
-                }
-            }
             textInputTime.setEndIconOnClickListener {
                 requireView().showSnackBar(getString(R.string.info_for_time))
             }
@@ -80,6 +70,45 @@ class CountDownTimerFragment :
         }
     }
 
+    private fun editTextChangedListener() {
+        binding.apply {
+            editTextTime.addTextChangedListener(object : TextWatcher {
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s.isNullOrBlank().not()) {
+                        viewModel.timerStartValue = s.toString().convertToMillisecond()
+                        textViewTime.text =
+                            (viewModel.timerStartValue - viewModel.timerPauseValue).convertToMinuteAndSecond()
+                        progressIndicator.max = viewModel.timerStartValue.toInt()
+
+                    } else {
+                        val empty = String.START_TIME.convertToMillisecond()
+                        textViewTime.text = empty.convertToMinuteAndSecond()
+                    }
+                }
+            })
+        }
+    }
+
+    private fun editTextDoOnTextChanged() {
+        binding.apply {
+            editTextTime.doOnTextChanged { text, _, _, _ ->
+                if (text.isNullOrBlank()) {
+                    textInputTime.error = getString(R.string.time_can_not_be_empty)
+                } else {
+                    textInputTime.error = null
+                }
+            }
+        }
+    }
 
     override fun onStop() {
         viewModel.pauseTimer()

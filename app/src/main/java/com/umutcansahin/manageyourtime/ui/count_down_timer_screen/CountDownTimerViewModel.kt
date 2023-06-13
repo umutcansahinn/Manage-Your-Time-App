@@ -4,7 +4,6 @@ import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
 import com.umutcansahin.manageyourtime.common.extensions.HUNDRED
 import com.umutcansahin.manageyourtime.common.extensions.ZERO
-import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
@@ -20,7 +19,10 @@ class CountDownTimerViewModel : ViewModel() {
 
     fun startTimer(time: String?) {
         if (!isTimerRunning) {
-            if (time.isNullOrBlank().not() && time.equals("0").not()) {
+            val firstCondition = time.isNullOrBlank().not()
+            val secondCondition = time.equals("0").not()
+
+            if (firstCondition && secondCondition) {
                 timer(timerPauseValue)
                 isTimerRunning = true
             } else {
@@ -42,7 +44,7 @@ class CountDownTimerViewModel : ViewModel() {
             isTimerRunning = false
         }
         _countDownState.value = CountDownState(
-            textViewTime = timerStartValue.convertToMinuteAndSecond(),
+            timerStartValue = timerStartValue,
             textInputTimeIsEnable = true,
             textInputTimeIsFocusable = true,
             isTimeNullOrBlank = false
@@ -56,7 +58,7 @@ class CountDownTimerViewModel : ViewModel() {
         ) {
             override fun onTick(millisUntilFinished: Long) {
                 _countDownState.value = CountDownState().copy(
-                    textViewTime = millisUntilFinished.convertToMinuteAndSecond(),
+                    timerStartValue = millisUntilFinished,
                     textInputTimeIsEnable = false,
                     textInputTimeIsFocusable = false,
                     isTimeNullOrBlank = false
@@ -73,7 +75,7 @@ class CountDownTimerViewModel : ViewModel() {
 }
 
 data class CountDownState(
-    val textViewTime: String = Long.ZERO.convertToMinuteAndSecond(),
+    val timerStartValue: Long = Long.ZERO,
     val textInputTimeIsEnable: Boolean = true,
     val textInputTimeIsFocusable: Boolean = true,
     val isTimeNullOrBlank: Boolean = false,

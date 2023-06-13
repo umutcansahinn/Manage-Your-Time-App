@@ -7,10 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.*
-import com.umutcansahin.manageyourtime.common.extensions.collectFlow
-import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
-import com.umutcansahin.manageyourtime.common.extensions.showAlertDialog
-import com.umutcansahin.manageyourtime.common.extensions.showSnackBar
+import com.umutcansahin.manageyourtime.common.extensions.*
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.databinding.FragmentDetailPlanBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -65,10 +62,16 @@ class DetailPlanFragment :
                 is RoomResponse.Success -> {}
             }
         }
-        collectFlow(viewModel.state2) {state->
+        collectFlow(viewModel.state2) { state ->
             with(binding) {
-                textViewTime.text = state.textViewTime
-                if (state.isTimeFinish) textViewTime.text = requireContext().getString(R.string.done)
+              /*  progressIndicator.max = entity.time.toInt()
+                val max = entity.time.toInt()
+                val value = (viewModel.timerStartValue - viewModel.timerPauseValue).toInt()*/
+                progressIndicator.progress = state.textViewTime.toInt()
+
+                textViewTime.text = state.textViewTime.convertToMinuteAndSecond()
+                if (state.isTimeFinish) textViewTime.text =
+                    requireContext().getString(R.string.done)
                 if (state.isTimeNullOrBlank) requireView().showSnackBar(getString(R.string.info_for_time))
             }
         }
@@ -129,8 +132,9 @@ class DetailPlanFragment :
                 viewModel.isFavorite = viewModel.isFavorite.not()
                 viewModel.addOrDeleteFromFavorite(entity.copy(favorite = viewModel.isFavorite))
             }
+            progressIndicator.max = entity.time.toInt()
         }
-      }
+    }
 
     override fun onStop() {
         viewModel.pauseTimer()

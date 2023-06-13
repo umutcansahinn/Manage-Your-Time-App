@@ -3,9 +3,9 @@ package com.umutcansahin.manageyourtime.ui.detail_plan_screen
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.umutcansahin.manageyourtime.common.*
+import com.umutcansahin.manageyourtime.common.Resource
+import com.umutcansahin.manageyourtime.common.RoomResponse
 import com.umutcansahin.manageyourtime.common.extensions.HUNDRED
-import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.usecase.AddOrDeleteFromFavoriteUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.DeletePlanUseCase
@@ -84,7 +84,7 @@ class DetailPlanViewModel(
             isTimerRunning = false
         }
         _state2.value = DetailState(
-            textViewTime = timerStartValue.convertToMinuteAndSecond(),
+            textViewTime = timerStartValue,
             isTimeNullOrBlank = false
         )
     }
@@ -96,7 +96,7 @@ class DetailPlanViewModel(
         ) {
             override fun onTick(millisUntilFinished: Long) {
                 _state2.value = DetailState().copy(
-                    textViewTime = millisUntilFinished.convertToMinuteAndSecond(),
+                    textViewTime = millisUntilFinished,
                     isTimeNullOrBlank = false
                 )
                 timerPauseValue = timerStartValue - millisUntilFinished

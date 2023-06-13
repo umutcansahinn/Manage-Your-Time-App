@@ -5,7 +5,7 @@ import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecon
 
 
 data class DetailState(
-    val textViewTime: String = Long.ZERO.convertToMinuteAndSecond(),
+    val textViewTime: Long = Long.ZERO,
     val isTimeNullOrBlank: Boolean = false,
     val isTimeFinish: Boolean = false
 )
