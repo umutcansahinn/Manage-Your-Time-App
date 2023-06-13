@@ -83,7 +83,7 @@ class DetailPlanViewModel(
             timerPauseValue = 0
             isTimerRunning = false
         }
-        _state2.value = DetailState(
+        _state2.value = _state2.value.copy(
             textViewTime = timerStartValue,
             isTimeNullOrBlank = false
         )
@@ -95,7 +95,7 @@ class DetailPlanViewModel(
             Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
-                _state2.value = DetailState().copy(
+                _state2.value = _state2.value.copy(
                     textViewTime = millisUntilFinished,
                     isTimeNullOrBlank = false
                 )
@@ -104,7 +104,7 @@ class DetailPlanViewModel(
 
             override fun onFinish() {
                 resetTimer()
-                _state2.value = DetailState().copy(isTimeFinish = true)
+                _state2.value = _state2.value.copy(isTimeFinish = true)
             }
         }.start()
     }

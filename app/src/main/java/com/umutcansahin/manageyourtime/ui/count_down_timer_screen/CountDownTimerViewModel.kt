@@ -26,7 +26,7 @@ class CountDownTimerViewModel : ViewModel() {
                 timer(timerPauseValue)
                 isTimerRunning = true
             } else {
-                _countDownState.value = CountDownState().copy(isTimeNullOrBlank = true)
+                _countDownState.value = _countDownState.value.copy(isTimeNullOrBlank = true)
             }
         }
     }
@@ -43,7 +43,7 @@ class CountDownTimerViewModel : ViewModel() {
             timerPauseValue = 0
             isTimerRunning = false
         }
-        _countDownState.value = CountDownState(
+        _countDownState.value = _countDownState.value.copy(
             timerStartValue = timerStartValue,
             textInputTimeIsEnable = true,
             textInputTimeIsFocusable = true,
@@ -57,7 +57,7 @@ class CountDownTimerViewModel : ViewModel() {
             Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
-                _countDownState.value = CountDownState().copy(
+                _countDownState.value = _countDownState.value.copy(
                     timerStartValue = millisUntilFinished,
                     textInputTimeIsEnable = false,
                     textInputTimeIsFocusable = false,
@@ -68,7 +68,7 @@ class CountDownTimerViewModel : ViewModel() {
 
             override fun onFinish() {
                 resetTimer()
-                _countDownState.value = CountDownState().copy(isTimeFinish = true)
+                _countDownState.value = _countDownState.value.copy(isTimeFinish = true)
             }
         }.start()
     }
