@@ -112,6 +112,7 @@
                 app:indicatorSize="250dp"
                 app:trackThickness="16dp"
                 android:layout_marginTop="8dp"
+                app:trackCornerRadius="100dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewTitle"/>
