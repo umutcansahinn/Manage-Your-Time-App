@@ -71,7 +71,7 @@
     <string name="finish">Finish</string>
     <string name="on_boarding">onBoarding</string>
     <string name="finished">finished</string>
-    <string name="on_boarding_1">You can use it for a specific period of time when you want to work.</string>
+    <string name="on_boarding_3">You can use it for a specific period of time when you want to work.</string>
     <string name="on_boarding_2">You can check how long you have been working.</string>
-    <string name="on_boarding_3">You can save the work schedules you frequently use and easily work on the same plan.</string>
+    <string name="on_boarding_1">You can save the work schedules you frequently use and easily work on the same plan.</string>
 </resources>
