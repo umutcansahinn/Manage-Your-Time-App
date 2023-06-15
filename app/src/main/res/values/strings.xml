@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ManageYourTime</string>
+    <string name="app_name">Time Tracker</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="add_new_plan">Add New Plan</string>
