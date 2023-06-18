@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.umutcansahin.manageyourtime.common.RoomResponse
 import com.umutcansahin.manageyourtime.domain.usecase.AddPlanUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.UpdatePlanUseCase
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -14,16 +15,16 @@ class AddViewModel(
     private val updatePlanUseCase: UpdatePlanUseCase
 ) : ViewModel() {
 
-    private val _addPlanState = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
+    private val _addPlanState = MutableSharedFlow<RoomResponse>()
     val addPlanState = _addPlanState.asSharedFlow()
 
-    private val _updatePlanState = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
+    private val _updatePlanState = MutableSharedFlow<RoomResponse>()
     val updatePlanState = _updatePlanState.asSharedFlow()
 
     fun addPlan(name: String?, time: String?) {
         viewModelScope.launch {
             addPlanUseCase(name, time).collect {
-                _addPlanState.value = it
+                _addPlanState.emit(it)
             }
         }
     }
@@ -31,7 +32,7 @@ class AddViewModel(
     fun updatePlan(name: String?,time: String?,id: Int) {
         viewModelScope.launch {
             updatePlanUseCase(name,time,id).collect {
-                _updatePlanState.value = it
+                _updatePlanState.emit(it)
             }
         }
     }
