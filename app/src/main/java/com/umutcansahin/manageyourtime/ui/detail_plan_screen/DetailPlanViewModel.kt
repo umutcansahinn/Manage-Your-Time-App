@@ -13,6 +13,7 @@ import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityByIdUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailPlanViewModel(
@@ -42,24 +43,24 @@ class DetailPlanViewModel(
 
     fun getPlanEntityById(entityId: Int) {
         viewModelScope.launch {
-            getPlanEntityByIdUseCase(entityId).collect {
-                _getEntityById.value = it
+            getPlanEntityByIdUseCase(entityId).collect { entity ->
+                _getEntityById.update { entity }
             }
         }
     }
 
     fun deletePlan(entity: PlanEntity) {
         viewModelScope.launch {
-            deletePlanUseCase(entity).collect {
-                _deleteEntity.value = it
+            deletePlanUseCase(entity).collect { response ->
+                _deleteEntity.update { response }
             }
         }
     }
 
     fun addOrDeleteFromFavorite(entity: PlanEntity) {
         viewModelScope.launch {
-            addOrDeleteFromFavoriteUseCase(entity).collect {
-                _addOrDeleteFromFavorite.value = it
+            addOrDeleteFromFavoriteUseCase(entity).collect { response ->
+                _addOrDeleteFromFavorite.update { response }
             }
         }
     }
@@ -83,10 +84,7 @@ class DetailPlanViewModel(
             timerPauseValue = 0
             isTimerRunning = false
         }
-        _state2.value = _state2.value.copy(
-            textViewTime = timerStartValue,
-            isTimeNullOrBlank = false
-        )
+        _state2.update { DetailState(textViewTime = timerStartValue, isTimeNullOrBlank = false) }
     }
 
     private fun timer(pauseTime: Long) {
@@ -95,16 +93,18 @@ class DetailPlanViewModel(
             Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
-                _state2.value = _state2.value.copy(
-                    textViewTime = millisUntilFinished,
-                    isTimeNullOrBlank = false
-                )
+                _state2.update {
+                    DetailState(
+                        textViewTime = millisUntilFinished,
+                        isTimeNullOrBlank = false
+                    )
+                }
                 timerPauseValue = timerStartValue - millisUntilFinished
             }
 
             override fun onFinish() {
                 resetTimer()
-                _state2.value = _state2.value.copy(isTimeFinish = true)
+                _state2.update { DetailState(isTimeFinish = true) }
             }
         }.start()
     }

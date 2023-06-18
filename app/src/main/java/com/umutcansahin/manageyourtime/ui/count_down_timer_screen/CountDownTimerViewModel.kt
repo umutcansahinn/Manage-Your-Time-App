@@ -6,6 +6,7 @@ import com.umutcansahin.manageyourtime.common.extensions.HUNDRED
 import com.umutcansahin.manageyourtime.common.extensions.ZERO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 
 class CountDownTimerViewModel : ViewModel() {
 
@@ -26,7 +27,7 @@ class CountDownTimerViewModel : ViewModel() {
                 timer(timerPauseValue)
                 isTimerRunning = true
             } else {
-                _countDownState.value = _countDownState.value.copy(isTimeNullOrBlank = true)
+                _countDownState.update { CountDownState(isTimeNullOrBlank = true) }
             }
         }
     }
@@ -43,12 +44,14 @@ class CountDownTimerViewModel : ViewModel() {
             timerPauseValue = 0
             isTimerRunning = false
         }
-        _countDownState.value = _countDownState.value.copy(
-            timerStartValue = timerStartValue,
-            textInputTimeIsEnable = true,
-            textInputTimeIsFocusable = true,
-            isTimeNullOrBlank = false
-        )
+        _countDownState.update {
+            CountDownState(
+                timerStartValue = timerStartValue,
+                textInputTimeIsEnable = true,
+                textInputTimeIsFocusable = true,
+                isTimeNullOrBlank = false
+            )
+        }
     }
 
     private fun timer(pauseTime: Long) {
@@ -57,18 +60,20 @@ class CountDownTimerViewModel : ViewModel() {
             Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
-                _countDownState.value = _countDownState.value.copy(
-                    timerStartValue = millisUntilFinished,
-                    textInputTimeIsEnable = false,
-                    textInputTimeIsFocusable = false,
-                    isTimeNullOrBlank = false
-                )
+                _countDownState.update {
+                    CountDownState(
+                        timerStartValue = millisUntilFinished,
+                        textInputTimeIsEnable = false,
+                        textInputTimeIsFocusable = false,
+                        isTimeNullOrBlank = false
+                    )
+                }
                 timerPauseValue = timerStartValue - millisUntilFinished
             }
 
             override fun onFinish() {
                 resetTimer()
-                _countDownState.value = _countDownState.value.copy(isTimeFinish = true)
+                _countDownState.update { CountDownState(isTimeFinish = true) }
             }
         }.start()
     }

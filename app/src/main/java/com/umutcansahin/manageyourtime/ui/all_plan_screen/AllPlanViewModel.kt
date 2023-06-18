@@ -10,6 +10,7 @@ import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityByFilterUseCa
 import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityBySearchUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class AllPlanViewModel(
@@ -18,7 +19,8 @@ class AllPlanViewModel(
     private val getPlanEntityByFilterUseCase: GetPlanEntityByFilterUseCase
 ) : ViewModel() {
 
-    private val _getPlanEntityByFilter = MutableStateFlow<Resource<List<PlanEntity>>>(Resource.Loading)
+    private val _getPlanEntityByFilter =
+        MutableStateFlow<Resource<List<PlanEntity>>>(Resource.Loading)
     val getPlanEntityByFilter = _getPlanEntityByFilter.asStateFlow()
 
     private val _deleteAllPlans = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
@@ -27,16 +29,16 @@ class AllPlanViewModel(
 
     fun deleteAllPlans() {
         viewModelScope.launch {
-            deleteAllPlanEntityUseCase().collect {
-                _deleteAllPlans.value = it
+            deleteAllPlanEntityUseCase().collect { response ->
+                _deleteAllPlans.update { response }
             }
         }
     }
 
-    fun getPlanEntityBySearch(search: String,filter: Filter) {
+    fun getPlanEntityBySearch(search: String, filter: Filter) {
         viewModelScope.launch {
-            getPlanEntityBySearchUseCase(search,filter).collect {
-                _getPlanEntityByFilter.value = it
+            getPlanEntityBySearchUseCase(search, filter).collect { list ->
+                _getPlanEntityByFilter.update { list }
             }
         }
     }
@@ -48,8 +50,8 @@ class AllPlanViewModel(
                 favoriteType = filter.favoriteType,
                 startTime = filter.startTime,
                 endTime = filter.endTime
-            ).collect {
-               _getPlanEntityByFilter.value = it
+            ).collect { list ->
+                _getPlanEntityByFilter.update { list }
             }
         }
     }

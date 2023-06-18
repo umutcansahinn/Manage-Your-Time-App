@@ -6,6 +6,7 @@ import com.umutcansahin.manageyourtime.common.extensions.THOUSAND
 import com.umutcansahin.manageyourtime.common.extensions.convertToMinuteAndSecond
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 
 class StopWatchViewModel : ViewModel() {
     private var timerStartValue: Long = 0
@@ -33,7 +34,7 @@ class StopWatchViewModel : ViewModel() {
             countDownTimer = null
             isTimerRunning = false
             timerStartValue = 0
-            _timer.value = timerStartValue.convertToMinuteAndSecond()
+            _timer.update { timerStartValue.convertToMinuteAndSecond() }
         }
     }
 
@@ -44,7 +45,7 @@ class StopWatchViewModel : ViewModel() {
         ) {
             override fun onTick(millisUntilFinished: Long) {
                 timerStartValue += Long.THOUSAND
-                _timer.value = timerStartValue.convertToMinuteAndSecond()
+                _timer.update { timerStartValue.convertToMinuteAndSecond() }
             }
 
             override fun onFinish() {}
