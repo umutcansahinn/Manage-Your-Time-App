@@ -31,8 +31,8 @@ class DetailPlanViewModel(
     private val _addOrDeleteFromFavorite = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
     val addOrDeleteFromFavorite = _addOrDeleteFromFavorite.asStateFlow()
 
-    private val _state2 = MutableStateFlow(DetailState())
-    val state2 = _state2.asSharedFlow()
+    private val _resetState = MutableStateFlow(DetailState())
+    val resetState = _resetState.asSharedFlow()
 
     var timerStartValue: Long = 0
     var timerPauseValue: Long = 0
@@ -84,7 +84,7 @@ class DetailPlanViewModel(
             timerPauseValue = 0
             isTimerRunning = false
         }
-        _state2.update { DetailState(textViewTime = timerStartValue, isTimeNullOrBlank = false) }
+        _resetState.update { DetailState(textViewTime = timerStartValue, isTimeNullOrBlank = false) }
     }
 
     private fun timer(pauseTime: Long) {
@@ -93,7 +93,7 @@ class DetailPlanViewModel(
             Long.HUNDRED
         ) {
             override fun onTick(millisUntilFinished: Long) {
-                _state2.update {
+                _resetState.update {
                     DetailState(
                         textViewTime = millisUntilFinished,
                         isTimeNullOrBlank = false
@@ -104,7 +104,7 @@ class DetailPlanViewModel(
 
             override fun onFinish() {
                 resetTimer()
-                _state2.update { DetailState(isTimeFinish = true) }
+                _resetState.update { DetailState(isTimeFinish = true) }
             }
         }.start()
     }

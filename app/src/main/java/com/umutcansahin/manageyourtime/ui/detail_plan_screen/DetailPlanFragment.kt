@@ -62,11 +62,8 @@ class DetailPlanFragment :
                 is RoomResponse.Success -> {}
             }
         }
-        collectFlow(viewModel.state2) { state ->
+        collectFlow(viewModel.resetState) { state ->
             with(binding) {
-              /*  progressIndicator.max = entity.time.toInt()
-                val max = entity.time.toInt()
-                val value = (viewModel.timerStartValue - viewModel.timerPauseValue).toInt()*/
                 progressIndicator.progress = state.textViewTime.toInt()
 
                 textViewTime.text = state.textViewTime.convertToMinuteAndSecond()
