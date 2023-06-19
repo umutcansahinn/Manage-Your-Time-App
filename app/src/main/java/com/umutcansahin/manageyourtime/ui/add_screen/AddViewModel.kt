@@ -23,15 +23,14 @@ class AddViewModel(
 
     fun addPlan(name: String?, time: String?) {
         viewModelScope.launch {
-            addPlanUseCase(name, time).collect {
-                _addPlanState.emit(it)
-            }
+            val result = addPlanUseCase(name, time)
+            _addPlanState.emit(result)
         }
     }
 
-    fun updatePlan(name: String?,time: String?,id: Int) {
+    fun updatePlan(name: String?, time: String?, id: Int) {
         viewModelScope.launch {
-            updatePlanUseCase(name,time,id).collect {
+            updatePlanUseCase(name, time, id).collect {
                 _updatePlanState.emit(it)
             }
         }
