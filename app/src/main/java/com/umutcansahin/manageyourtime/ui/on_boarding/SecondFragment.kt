@@ -15,7 +15,7 @@ class SecondFragment: BaseFragment<FragmentSecondBinding>(FragmentSecondBinding:
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
-        binding.textViewNext.setOnClickListener {
+        binding.buttonNext.setOnClickListener {
             viewPager?.currentItem = 2
         }
         val drawable = ContextCompat.getDrawable(requireContext(),R.drawable.on_boarding2)

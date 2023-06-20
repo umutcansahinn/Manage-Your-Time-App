@@ -35,6 +35,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:background="@color/md_theme_light_secondaryContainer"
+            android:paddingBottom="16dp"
             android:layout_height="match_parent">
 
             <TextView
@@ -53,12 +54,11 @@
                 android:id="@+id/textInputStartTime"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
                 app:hintTextColor="@color/md_theme_light_primary"
                 android:textColorHint="@color/md_theme_light_onSurfaceVariant"
                 app:boxStrokeColor="@color/md_theme_light_primary"
-                android:layout_marginTop="8dp"
                 android:hint="@string/start_time"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
@@ -71,7 +71,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextStartTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginVertical="8dp"
+                    android:hint="@string/start_time"
                     android:inputType="number"
                     android:maxLength="5" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -80,12 +82,11 @@
                 android:id="@+id/textInputEndTime"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:hintTextColor="@color/md_theme_light_primary"
                 android:textColorHint="@color/md_theme_light_onSurfaceVariant"
                 app:boxStrokeColor="@color/md_theme_light_primary"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="16dp"
                 android:hint="@string/end_time"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
@@ -98,7 +99,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextEndTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
+                    android:hint="@string/end_time"
                     android:inputType="number"
                     android:maxLength="5" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,10 +142,7 @@
 
                 <CheckBox
                     android:id="@+id/checkBoxAllItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/md_theme_light_primary"
-                    android:textColor="@color/md_theme_light_onSurface"
+                    style="@style/CheckBoxStyle"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/all_item"
@@ -152,10 +151,7 @@
 
                 <CheckBox
                     android:id="@+id/checkBoxIsFavoriteItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/md_theme_light_primary"
-                    android:textColor="@color/md_theme_light_onSurface"
+                    style="@style/CheckBoxStyle"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/is_favorite"
@@ -164,10 +160,7 @@
 
                 <CheckBox
                     android:id="@+id/checkBoxIsNotFavoriteItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/md_theme_light_primary"
-                    android:textColor="@color/md_theme_light_onSurface"
+                    style="@style/CheckBoxStyle"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/is_not_favorite"
@@ -218,16 +211,12 @@
 
                 <RadioButton
                     android:id="@+id/radioButtonDesc"
-                    android:buttonTint="@color/md_theme_light_primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/RadioButtonStyle"
                     android:text="@string/descending" />
 
                 <RadioButton
                     android:id="@+id/radioButtonAsc"
-                    android:buttonTint="@color/md_theme_light_primary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/RadioButtonStyle"
                     android:text="@string/ascending" />
             </RadioGroup>
 
@@ -238,47 +227,32 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonReset"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/custom_button"
+                style="@style/ButtonSquareStyle"
                 android:text="@string/reset"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:backgroundTint="@color/md_theme_light_primary"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toStartOf="@id/buttonCancel"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardViewSortedBy" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                style="@style/ButtonSquareStyle"
                 android:layout_marginTop="32dp"
-                android:background="@drawable/custom_button"
                 android:text="@string/cancel"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:backgroundTint="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toStartOf="@id/buttonApply"
                 app:layout_constraintStart_toEndOf="@id/buttonReset"
                 app:layout_constraintTop_toBottomOf="@id/cardViewSortedBy" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonApply"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/custom_button"
+                style="@style/ButtonSquareStyle"
                 android:text="@string/apply"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:backgroundTint="@color/md_theme_light_primary"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/buttonCancel"
                 app:layout_constraintTop_toBottomOf="@id/cardViewSortedBy" />

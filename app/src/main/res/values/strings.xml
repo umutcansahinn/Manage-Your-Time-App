@@ -74,4 +74,9 @@
     <string name="on_boarding_3">You can use it for a specific period of time when you want to work.</string>
     <string name="on_boarding_2">You can check how long you have been working.</string>
     <string name="on_boarding_1">You can save the work schedules you frequently use and easily work on the same plan.</string>
+    <string name="filter_list">filter list</string>
+    <string name="delete_all_item">delete all items</string>
+    <string name="delete_item">delete item</string>
+    <string name="update_item">update item</string>
+    <string name="add_favorite">add favorite</string>
 </resources>

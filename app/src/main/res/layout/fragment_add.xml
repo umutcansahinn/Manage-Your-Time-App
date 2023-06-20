@@ -10,13 +10,11 @@
 
     <ImageButton
         android:id="@+id/imageButtonBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        style="@style/ButtonCircleStyle"
+        android:contentDescription="@string/back_page"
+        android:src="@drawable/baseline_arrow_back_24"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/custom_back_button"
-        android:contentDescription="@string/empty"
-        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +74,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
+                    android:hint="@string/plan_s_title"
                     android:maxLength="50" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +104,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
+                    android:hint="@string/time_for_plan"
                     android:inputType="number"
                     android:maxLength="5" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,15 +115,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonAddOrUpdatePlan"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="50dp"
+        style="@style/ButtonSquareStyle"
         android:text="@string/add_plan"
-        android:textSize="20sp"
-        android:textColor="@color/md_theme_light_background"
         android:textAllCaps="false"
-        android:background="@drawable/custom_button"
-        app:backgroundTint="@color/md_theme_light_primary"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="@id/cardView"
         app:layout_constraintTop_toBottomOf="@id/cardView" />
 

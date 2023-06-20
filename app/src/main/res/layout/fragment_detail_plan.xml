@@ -9,15 +9,13 @@
 
     <ImageButton
         android:id="@+id/imageButtonBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        style="@style/ButtonCircleStyle"
+        android:contentDescription="@string/back_page"
+        android:src="@drawable/baseline_arrow_back_24"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/custom_back_button"
-        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/back_page" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,39 +27,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageButton
             android:id="@+id/buttonDelete"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            style="@style/ButtonCircleStyle"
+            android:contentDescription="@string/delete_item"
+            android:src="@drawable/baseline_delete_24"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:contentDescription="@string/empty"
-            android:src="@drawable/baseline_delete_24"
-            android:background="@drawable/custom_back_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageButton
             android:id="@+id/buttonUpdate"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            style="@style/ButtonCircleStyle"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="@string/empty"
+            android:contentDescription="@string/update_item"
             android:src="@drawable/baseline_create_24"
-            android:background="@drawable/custom_back_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/buttonDelete"/>
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageButton
             android:id="@+id/imageButtonFavorite"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            style="@style/ButtonCircleStyle"
+            android:contentDescription="@string/add_favorite"
+            android:src="@drawable/baseline_star_border_24"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="@string/empty"
-            android:src="@drawable/baseline_star_border_24"
-            android:background="@drawable/custom_back_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/buttonUpdate"/>
 
@@ -135,13 +127,11 @@
 
             <ImageButton
                 android:id="@+id/imageButtonStartTimer"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="48dp"
-                android:background="@drawable/custom_back_button"
+                style="@style/ButtonCircleStyle"
                 android:contentDescription="@string/start_time"
                 android:src="@drawable/baseline_play_arrow_24"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="48dp"
                 app:layout_constraintEnd_toStartOf="@id/imageButtonStopTimer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/progressIndicator" />
@@ -149,11 +139,9 @@
 
             <ImageButton
                 android:id="@+id/imageButtonStopTimer"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                style="@style/ButtonCircleStyle"
                 android:contentDescription="@string/time_stop"
                 android:src="@drawable/baseline_pause_24"
-                android:background="@drawable/custom_back_button"
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toEndOf="@id/imageButtonStartTimer"
                 app:layout_constraintEnd_toStartOf="@id/imageButtonResetTimer"
@@ -161,11 +149,9 @@
 
             <ImageButton
                 android:id="@+id/imageButtonResetTimer"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                style="@style/ButtonCircleStyle"
                 android:contentDescription="@string/time_reset"
                 android:src="@drawable/baseline_cached_24"
-                android:background="@drawable/custom_back_button"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="48dp"
                 app:layout_constraintStart_toEndOf="@id/imageButtonStopTimer"

@@ -15,7 +15,7 @@ class ThirdFragment : BaseFragment<FragmentThirdBinding>(FragmentThirdBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textViewFinish.setOnClickListener {
+        binding.buttonFinish.setOnClickListener {
             findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToHomeFragment())
             onBoardingIsFinished()
         }
