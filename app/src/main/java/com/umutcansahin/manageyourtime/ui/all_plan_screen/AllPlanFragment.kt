@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.umutcansahin.manageyourtime.R
 import com.umutcansahin.manageyourtime.base.BaseFragment
+import com.umutcansahin.manageyourtime.common.NavType
 import com.umutcansahin.manageyourtime.common.Resource
 import com.umutcansahin.manageyourtime.common.RoomResponse
 import com.umutcansahin.manageyourtime.common.extensions.collectFlow
@@ -15,6 +16,7 @@ import com.umutcansahin.manageyourtime.common.extensions.showAlertDialog
 import com.umutcansahin.manageyourtime.common.extensions.showSnackBar
 import com.umutcansahin.manageyourtime.common.filter.Filter
 import com.umutcansahin.manageyourtime.databinding.FragmentAllPlanBinding
+import com.umutcansahin.manageyourtime.ui.home_screen.HomeFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBinding::inflate) {
@@ -46,10 +48,12 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
             when (it) {
                 is Resource.Loading ->
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
+
                 is Resource.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
                     binding.textViewError.text = it.errorMessage
                 }
+
                 is Resource.Success -> {
                     if (it.data.isNotEmpty()) {
                         adapter.submitList(it.data)
@@ -64,7 +68,8 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
             when (it) {
                 is RoomResponse.Success ->
                     requireView().showSnackBar(getString(R.string.deleted))
-                is RoomResponse.Loading -> {}
+
+                is RoomResponse.Loading -> Unit
                 is RoomResponse.Error ->
                     requireView().showSnackBar(getString(R.string.default_error))
             }
@@ -94,12 +99,21 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                     )
                 )
             }
+            emptyList.root.setOnClickListener {
+                findNavController().navigate(
+                    AllPlanFragmentDirections.actionAllPlanFragmentToAddFragment(
+                        NavType.ADD_NEW_ITEM,
+                        null
+                    )
+                )
+            }
 
             if (isSearchVisible) {
                 textInputSearch.visibility = View.VISIBLE
             } else {
                 textInputSearch.visibility = View.GONE
             }
+
             buttonSearch.setOnClickListener {
                 isSearchVisible = !isSearchVisible
                 if (isSearchVisible) {
@@ -124,7 +138,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                     if (s == null || s.toString().isEmpty()) {
                         viewModel.filter(filter)
                     } else {
-                        viewModel.getPlanEntityBySearch(s.toString(),filter)
+                        viewModel.getPlanEntityBySearch(s.toString(), filter)
                     }
                 }
             })

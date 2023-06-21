@@ -75,7 +75,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:hint="@string/search"
-        android:visibility="gone"
+        android:visibility="visible"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +139,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageButtonBack" />
+        app:layout_constraintTop_toBottomOf="@id/textInputSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
