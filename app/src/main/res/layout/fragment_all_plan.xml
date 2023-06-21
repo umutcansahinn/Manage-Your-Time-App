@@ -129,18 +129,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-
-    <TextView
-        android:id="@+id/textViewEmptyList"
+    <include
+        android:id="@+id/emptyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/please_enter_the_plans"
-        android:textSize="20sp"
-        android:visibility="gone"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/empty_list"
+        android:visibility="visible"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageButtonBack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

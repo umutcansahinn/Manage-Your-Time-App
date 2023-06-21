@@ -55,7 +55,7 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
                         adapter.submitList(it.data)
                         setViewVisibility(visibilityForRecyclerview = View.VISIBLE)
                     } else {
-                        setViewVisibility(visibilityForTextViewEmptyList = View.VISIBLE)
+                        setViewVisibility(visibilityForEmptyList = View.VISIBLE)
                     }
                 }
             }
@@ -135,13 +135,14 @@ class AllPlanFragment : BaseFragment<FragmentAllPlanBinding>(FragmentAllPlanBind
         visibilityForProgressBar: Int = View.GONE,
         visibilityForTextViewError: Int = View.GONE,
         visibilityForRecyclerview: Int = View.GONE,
-        visibilityForTextViewEmptyList: Int = View.GONE
+        visibilityForEmptyList: Int = View.GONE
     ) {
         with(binding) {
             progressBar.visibility = visibilityForProgressBar
             textViewError.visibility = visibilityForTextViewError
             recyclerView.visibility = visibilityForRecyclerview
-            textViewEmptyList.visibility = visibilityForTextViewEmptyList
+            emptyList.constraint.visibility = visibilityForEmptyList
+
         }
     }
 
