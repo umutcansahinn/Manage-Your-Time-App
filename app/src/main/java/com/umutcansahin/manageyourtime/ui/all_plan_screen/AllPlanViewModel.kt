@@ -8,7 +8,9 @@ import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.usecase.DeleteAllPlanEntityUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityByFilterUseCase
 import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityBySearchUseCase
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -23,14 +25,14 @@ class AllPlanViewModel(
         MutableStateFlow<Resource<List<PlanEntity>>>(Resource.Loading)
     val getPlanEntityByFilter = _getPlanEntityByFilter.asStateFlow()
 
-    private val _deleteAllPlans = MutableStateFlow<RoomResponse>(RoomResponse.Loading)
-    val deleteAllPlans = _deleteAllPlans.asStateFlow()
+    private val _deleteAllPlans = MutableSharedFlow<RoomResponse>()
+    val deleteAllPlans = _deleteAllPlans.asSharedFlow()
 
 
     fun deleteAllPlans() {
         viewModelScope.launch {
             deleteAllPlanEntityUseCase().collect { response ->
-                _deleteAllPlans.update { response }
+                _deleteAllPlans.emit(response)
             }
         }
     }
