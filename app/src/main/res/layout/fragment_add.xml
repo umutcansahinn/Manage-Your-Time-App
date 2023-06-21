@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/md_theme_light_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_light_background"
     tools:context=".ui.add_screen.AddFragment">
 
     <ImageButton
         android:id="@+id/imageButtonBack"
-        style="@style/ButtonCircleStyle"
-        android:contentDescription="@string/back_page"
-        android:src="@drawable/baseline_arrow_back_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:padding="12dp"
+        android:background="@drawable/back_ground_circle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
+        android:contentDescription="@string/back_page"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,50 +25,45 @@
         android:id="@+id/textViewInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_new_plan"
-        android:textSize="32sp"
         android:layout_marginEnd="16dp"
+        android:text="@string/add_new_plan"
         android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="@id/imageButtonBack"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@id/imageButtonBack"
-        app:layout_constraintStart_toEndOf="@id/imageButtonBack"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="1dp"
-        app:cardCornerRadius="12dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageButtonBack">
+        app:layout_constraintStart_toEndOf="@id/imageButtonBack"
+        app:layout_constraintTop_toTopOf="@id/imageButtonBack" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/md_theme_light_secondaryContainer"
+            android:background="@drawable/back_ground_rectangle"
             android:paddingVertical="16dp"
-            android:background="@color/md_theme_light_secondaryContainer"
-            android:layout_height="match_parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageButtonBack">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputTitle"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:hintTextColor="@color/md_theme_light_primary"
-                android:textColorHint="@color/md_theme_light_onSurfaceVariant"
-                app:boxStrokeColor="@color/md_theme_light_primary"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/plan_s_title"
+                android:textColorHint="@color/md_theme_light_onSurfaceVariant"
+                app:boxStrokeColor="@color/md_theme_light_primary"
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:endIconMode="clear_text"
                 app:helperText="required*"
                 app:helperTextTextColor="@color/red"
+                app:hintTextColor="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -84,18 +82,18 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:hintTextColor="@color/md_theme_light_primary"
-                android:textColorHint="@color/md_theme_light_onSurfaceVariant"
-                app:boxStrokeColor="@color/md_theme_light_primary"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/time_for_plan"
+                android:textColorHint="@color/md_theme_light_onSurfaceVariant"
+                app:boxStrokeColor="@color/md_theme_light_primary"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
                 app:endIconDrawable="@drawable/baseline_question_mark_24"
                 app:endIconMode="custom"
                 app:helperText="required*"
                 app:helperTextTextColor="@color/red"
+                app:hintTextColor="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textInputTitle"
@@ -111,15 +109,21 @@
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
+
+    <Button
         android:id="@+id/buttonAddOrUpdatePlan"
-        style="@style/ButtonSquareStyle"
-        android:text="@string/add_plan"
-        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_ground_rectangle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
+        android:textColor="@color/md_theme_light_background"
+        android:textSize="16sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
         android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="@id/cardView"
-        app:layout_constraintTop_toBottomOf="@id/cardView" />
+        android:text="@string/add_plan"
+        app:layout_constraintEnd_toEndOf="@id/constraint"
+        app:layout_constraintTop_toBottomOf="@id/constraint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

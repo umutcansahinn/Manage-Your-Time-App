@@ -1,6 +1,7 @@
 package com.umutcansahin.manageyourtime.ui.detail_plan_screen
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -9,6 +10,7 @@ import com.umutcansahin.manageyourtime.base.BaseFragment
 import com.umutcansahin.manageyourtime.common.*
 import com.umutcansahin.manageyourtime.common.extensions.*
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
+import com.umutcansahin.manageyourtime.databinding.CustomAlertDialogBinding
 import com.umutcansahin.manageyourtime.databinding.FragmentDetailPlanBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,9 +38,11 @@ class DetailPlanFragment :
                     setViewVisibility(visibilityForConstraintLayout = View.VISIBLE)
                     setUi(it.data)
                 }
+
                 is Resource.Loading -> {
                     setViewVisibility(visibilityForProgressBar = View.VISIBLE)
                 }
+
                 is Resource.Error -> {
                     setViewVisibility(visibilityForTextViewError = View.VISIBLE)
                     binding.textViewError.text = it.errorMessage
@@ -106,12 +110,13 @@ class DetailPlanFragment :
                 )
             }
             buttonDelete.setOnClickListener {
-                requireContext().showAlertDialog(
+              /*  requireContext().showAlertDialog(
                     getString(R.string.alert),
                     getString(R.string.do_you_want_to_delete_this_plan)
                 ) {
                     viewModel.deletePlan(entity)
-                }
+                }*/
+                showCustomAlertDialog(entity)
             }
             imageButtonBack.setOnClickListener {
                 findNavController().popBackStack()
@@ -131,6 +136,23 @@ class DetailPlanFragment :
             }
             progressIndicator.max = entity.time.toInt()
         }
+    }
+
+    private fun showCustomAlertDialog(entity: PlanEntity) {
+        val inflater = LayoutInflater.from(requireContext())
+        val bindingCustomAlert = CustomAlertDialogBinding.inflate(inflater)
+        requireContext().showMaterialAlertDialog(bindingCustomAlert.root)
+        with(bindingCustomAlert) {
+            buttonYes.setOnClickListener {
+                viewModel.deletePlan(entity)
+            }
+            buttonNo.setOnClickListener {
+
+            }
+        }
+        bindingCustomAlert.textViewAlertTitle.text = getString(R.string.alert)
+        bindingCustomAlert.textViewAlertMessage.text =
+            getString(R.string.do_you_want_to_delete_this_plan)
     }
 
     override fun onStop() {

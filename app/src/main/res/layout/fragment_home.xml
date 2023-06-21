@@ -7,196 +7,168 @@
     android:layout_height="match_parent"
     tools:context=".ui.home_screen.HomeFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewAdd"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addScreen"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="1dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/back_ground_rectangle"
         android:backgroundTint="@color/md_theme_light_primary"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/addScreen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageViewAdd"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewAddPlan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageViewAdd"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:contentDescription="@string/empty"
-                android:src="@drawable/baseline_add_24"
-                android:layout_marginStart="16dp"
-                app:layout_constraintEnd_toStartOf="@id/textViewAddPlan"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAddPlan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/add_new_plan"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_background"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewAdd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewAdd"
+            app:layout_constraintTop_toTopOf="@id/imageViewAdd" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewAddPlan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/add_new_plan"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:textColor="@color/md_theme_light_background"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toTopOf="@id/imageViewAdd"
-                app:layout_constraintBottom_toBottomOf="@id/imageViewAdd"
-                app:layout_constraintStart_toEndOf="@id/imageViewAdd"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewShowAllPlan"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/allListScreen"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="1dp"
+        android:background="@drawable/back_ground_rectangle"
         android:backgroundTint="@color/md_theme_light_primary"
-        app:layout_constraintTop_toBottomOf="@id/cardViewAdd"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/addScreen">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/allListScreen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageViewAllList"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/baseline_format_list_bulleted_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewAllList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageViewAllList"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:contentDescription="@string/empty"
-                android:src="@drawable/baseline_format_list_bulleted_24"
-                android:layout_marginStart="16dp"
-                app:layout_constraintEnd_toStartOf="@id/textViewAllList"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/textViewAllList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/show_all_plans"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_background"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewAllList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewAllList"
+            app:layout_constraintTop_toTopOf="@id/imageViewAllList" />
 
-            <TextView
-                android:id="@+id/textViewAllList"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/show_all_plans"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:textColor="@color/md_theme_light_background"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toTopOf="@id/imageViewAllList"
-                app:layout_constraintBottom_toBottomOf="@id/imageViewAllList"
-                app:layout_constraintStart_toEndOf="@id/imageViewAllList"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewCountDownTimer"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/countDownTimerScreen"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/back_ground_rectangle"
         android:backgroundTint="@color/md_theme_light_primary"
-        app:layout_constraintTop_toBottomOf="@id/cardViewShowAllPlan"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/allListScreen">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/countDownTimerScreen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageViewCountDownTimer"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/baseline_access_time_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewCountDownTimer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageViewCountDownTimer"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:contentDescription="@string/empty"
-                android:src="@drawable/baseline_access_time_24"
-                android:layout_marginStart="16dp"
-                app:layout_constraintEnd_toStartOf="@id/textViewCountDownTimer"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/textViewCountDownTimer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/count_down_timer"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_background"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewCountDownTimer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewCountDownTimer"
+            app:layout_constraintTop_toTopOf="@id/imageViewCountDownTimer" />
 
-            <TextView
-                android:id="@+id/textViewCountDownTimer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/count_down_timer"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:textColor="@color/md_theme_light_background"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toTopOf="@id/imageViewCountDownTimer"
-                app:layout_constraintBottom_toBottomOf="@id/imageViewCountDownTimer"
-                app:layout_constraintStart_toEndOf="@id/imageViewCountDownTimer"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewStopWatch"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/stopWatchScreen"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/back_ground_rectangle"
         android:backgroundTint="@color/md_theme_light_primary"
-        app:layout_constraintTop_toBottomOf="@id/cardViewCountDownTimer"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/countDownTimerScreen">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/stopWatchScreen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageViewStopWatch"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/outline_timer_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewStopWatch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageViewStopWatch"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:contentDescription="@string/empty"
-                android:src="@drawable/outline_timer_24"
-                android:layout_marginStart="16dp"
-                app:layout_constraintEnd_toStartOf="@id/textViewStopWatch"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/textViewStopWatch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/stopwatch"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_background"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewStopWatch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewStopWatch"
+            app:layout_constraintTop_toTopOf="@id/imageViewStopWatch" />
 
-            <TextView
-                android:id="@+id/textViewStopWatch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/stopwatch"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:textColor="@color/md_theme_light_background"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toTopOf="@id/imageViewStopWatch"
-                app:layout_constraintBottom_toBottomOf="@id/imageViewStopWatch"
-                app:layout_constraintStart_toEndOf="@id/imageViewStopWatch"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

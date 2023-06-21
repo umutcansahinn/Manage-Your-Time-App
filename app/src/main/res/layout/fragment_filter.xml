@@ -1,42 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.filter_screen.FilterFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintTimeType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="1dp"
-            app:cardCornerRadius="12dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:background="@color/md_theme_light_secondaryContainer"
+            android:background="@drawable/back_ground_rectangle"
+            android:backgroundTint="@color/md_theme_light_secondaryContainer"
             android:paddingBottom="16dp"
-            android:layout_height="match_parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/textViewTimeInfo"
@@ -56,13 +42,13 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
-                app:hintTextColor="@color/md_theme_light_primary"
+                android:hint="@string/start_time"
                 android:textColorHint="@color/md_theme_light_onSurfaceVariant"
                 app:boxStrokeColor="@color/md_theme_light_primary"
-                android:hint="@string/start_time"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
                 app:endIconMode="clear_text"
+                app:hintTextColor="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewTimeInfo"
@@ -83,14 +69,14 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:hintTextColor="@color/md_theme_light_primary"
-                android:textColorHint="@color/md_theme_light_onSurfaceVariant"
-                app:boxStrokeColor="@color/md_theme_light_primary"
                 android:layout_margin="16dp"
                 android:hint="@string/end_time"
+                android:textColorHint="@color/md_theme_light_onSurfaceVariant"
+                app:boxStrokeColor="@color/md_theme_light_primary"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
                 app:endIconMode="clear_text"
+                app:hintTextColor="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textInputStartTime"
@@ -107,85 +93,71 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="1dp"
-                app:cardCornerRadius="12dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewTime">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:background="@color/md_theme_light_secondaryContainer"
-                    android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textViewItemTypeInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/item_type"
-                    android:textColor="@color/md_theme_light_onSurface"
-                    android:textSize="22sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <CheckBox
-                    android:id="@+id/checkBoxAllItem"
-                    style="@style/CheckBoxStyle"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/all_item"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textViewItemTypeInfo" />
-
-                <CheckBox
-                    android:id="@+id/checkBoxIsFavoriteItem"
-                    style="@style/CheckBoxStyle"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/is_favorite"
-                    app:layout_constraintStart_toEndOf="@id/checkBoxAllItem"
-                    app:layout_constraintTop_toBottomOf="@id/textViewItemTypeInfo" />
-
-                <CheckBox
-                    android:id="@+id/checkBoxIsNotFavoriteItem"
-                    style="@style/CheckBoxStyle"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/is_not_favorite"
-                    app:layout_constraintStart_toEndOf="@id/checkBoxIsFavoriteItem"
-                    app:layout_constraintTop_toBottomOf="@id/textViewItemTypeInfo" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewSortedBy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="1dp"
-            app:cardCornerRadius="12dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardViewType">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintItemType"
             android:layout_width="match_parent"
-            android:background="@color/md_theme_light_secondaryContainer"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/back_ground_rectangle"
+            android:backgroundTint="@color/md_theme_light_secondaryContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintTimeType">
+
+            <TextView
+                android:id="@+id/textViewItemTypeInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/item_type"
+                android:textColor="@color/md_theme_light_onSurface"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAllItem"
+                style="@style/CheckBoxStyle"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/all_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewItemTypeInfo" />
+
+            <CheckBox
+                android:id="@+id/checkBoxIsFavoriteItem"
+                style="@style/CheckBoxStyle"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/is_favorite"
+                app:layout_constraintStart_toEndOf="@id/checkBoxAllItem"
+                app:layout_constraintTop_toBottomOf="@id/textViewItemTypeInfo" />
+
+            <CheckBox
+                android:id="@+id/checkBoxIsNotFavoriteItem"
+                style="@style/CheckBoxStyle"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/is_not_favorite"
+                app:layout_constraintStart_toEndOf="@id/checkBoxIsFavoriteItem"
+                app:layout_constraintTop_toBottomOf="@id/textViewItemTypeInfo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintSortedType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/back_ground_rectangle"
+            android:backgroundTint="@color/md_theme_light_secondaryContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintItemType">
 
             <TextView
                 android:id="@+id/textViewSortedByInfo"
@@ -197,7 +169,7 @@
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
                 android:id="@+id/radioGroupSortedBy"
@@ -222,41 +194,57 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/buttonReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@drawable/back_ground_rectangle_button"
+            android:backgroundTint="@color/md_theme_light_primary"
+            android:text="@string/reset"
+            android:textColor="@color/md_theme_light_background"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/buttonCancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintSortedType" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonReset"
-                style="@style/ButtonSquareStyle"
-                android:text="@string/reset"
-                android:textAllCaps="false"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toStartOf="@id/buttonCancel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewSortedBy" />
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@drawable/back_ground_rectangle_button"
+            android:backgroundTint="@color/md_theme_light_primary"
+            android:text="@string/cancel"
+            android:textColor="@color/md_theme_light_background"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/buttonApply"
+            app:layout_constraintStart_toEndOf="@id/buttonReset"
+            app:layout_constraintTop_toBottomOf="@id/constraintSortedType" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonCancel"
-                style="@style/ButtonSquareStyle"
-                android:layout_marginTop="32dp"
-                android:text="@string/cancel"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toStartOf="@id/buttonApply"
-                app:layout_constraintStart_toEndOf="@id/buttonReset"
-                app:layout_constraintTop_toBottomOf="@id/cardViewSortedBy" />
+        <Button
+            android:id="@+id/buttonApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@drawable/back_ground_rectangle_button"
+            android:backgroundTint="@color/md_theme_light_primary"
+            android:text="@string/apply"
+            android:textColor="@color/md_theme_light_background"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/buttonCancel"
+            app:layout_constraintTop_toBottomOf="@id/constraintSortedType" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonApply"
-                style="@style/ButtonSquareStyle"
-                android:text="@string/apply"
-                android:textAllCaps="false"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/buttonCancel"
-                app:layout_constraintTop_toBottomOf="@id/cardViewSortedBy" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

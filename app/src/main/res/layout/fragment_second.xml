@@ -47,9 +47,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNext"
-        style="@style/ButtonSquareStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_ground_rectangle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
+        android:textColor="@color/md_theme_light_background"
+        android:textSize="16sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
         android:text="@string/next"
-        android:textAllCaps="false"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"

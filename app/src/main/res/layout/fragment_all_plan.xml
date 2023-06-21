@@ -9,18 +9,27 @@
 
     <ImageButton
         android:id="@+id/imageButtonBack"
-        style="@style/ButtonCircleStyle"
-        android:contentDescription="@string/back_page"
-        android:src="@drawable/baseline_arrow_back_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:padding="12dp"
+        android:background="@drawable/back_ground_circle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
+        android:contentDescription="@string/back_page"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageButton
         android:id="@+id/buttonFilter"
-        style="@style/ButtonCircleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="12dp"
+        android:background="@drawable/back_ground_circle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
         android:contentDescription="@string/filter_list"
         android:src="@drawable/baseline_filter_alt_24"
         android:layout_marginTop="32dp"
@@ -30,7 +39,12 @@
 
     <ImageButton
         android:id="@+id/buttonDeleteAll"
-        style="@style/ButtonCircleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="12dp"
+        android:background="@drawable/back_ground_circle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
         android:contentDescription="@string/delete_all_item"
         android:src="@drawable/baseline_delete_forever_24"
         android:layout_marginTop="32dp"
@@ -40,7 +54,12 @@
 
     <ImageButton
         android:id="@+id/buttonSearch"
-        style="@style/ButtonCircleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="12dp"
+        android:background="@drawable/back_ground_circle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
         android:contentDescription="@string/empty"
         android:src="@drawable/baseline_search_24"
         android:layout_marginTop="32dp"

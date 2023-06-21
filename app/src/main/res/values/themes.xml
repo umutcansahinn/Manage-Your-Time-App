@@ -43,17 +43,4 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="ButtonSquareStyle" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/md_theme_light_background</item>
-        <item name="android:background">@drawable/custom_button</item>
-    </style>
-
-    <style name="ButtonCircleStyle" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_width">48dp</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:background">@drawable/custom_back_button</item>
-    </style>
 </resources>

@@ -1,157 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.count_down_timer_screen.CountDownTimerFragment">
 
 
     <ImageButton
         android:id="@+id/imageButtonBack"
-        style="@style/ButtonCircleStyle"
-        android:src="@drawable/baseline_arrow_back_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/back_ground_circle_button"
+        android:backgroundTint="@color/md_theme_light_primary"
+        android:contentDescription="@string/back_page"
+        android:padding="12dp"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/back_page" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/count_down_timer"
-        android:textSize="32sp"
-        android:textColor="@color/black"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toTopOf="@id/imageButtonBack"
+        android:text="@string/count_down_timer"
+        android:textColor="@color/black"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@id/imageButtonBack"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageButtonBack"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/imageButtonBack" />
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="1dp"
-        app:cardCornerRadius="12dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/back_ground_rectangle"
+        android:backgroundTint="@color/md_theme_light_secondaryContainer"
+        android:paddingVertical="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageButtonBack">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/md_theme_light_secondaryContainer"
-            android:paddingVertical="16dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputTime"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/time_for_plan"
+            android:textColorHint="@color/md_theme_light_onSurfaceVariant"
+            app:boxStrokeColor="@color/md_theme_light_primary"
+            app:counterEnabled="true"
+            app:counterMaxLength="5"
+            app:endIconDrawable="@drawable/baseline_question_mark_24"
+            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/baseline_error_outline_24"
+            app:helperTextTextColor="@color/red"
+            app:hintTextColor="@color/md_theme_light_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/baseline_access_time_24">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputTime"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTime"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:hint="@string/time_for_plan"
-                app:counterEnabled="true"
-                app:counterMaxLength="5"
-                app:endIconDrawable="@drawable/baseline_question_mark_24"
-                app:endIconMode="custom"
-                app:errorEnabled="true"
-                app:errorIconDrawable="@drawable/baseline_error_outline_24"
-                app:helperTextTextColor="@color/red"
-                app:hintTextColor="@color/md_theme_light_primary"
-                android:textColorHint="@color/md_theme_light_onSurfaceVariant"
-                app:boxStrokeColor="@color/md_theme_light_primary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:startIconDrawable="@drawable/baseline_access_time_24">
+                android:inputType="number"
+                android:maxLength="5" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:inputType="number"
-                    android:hint="@string/time_for_plan"
-                    android:maxLength="5" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressIndicator"
+            style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:progress="0"
+            android:rotation="0"
+            app:indicatorColor="@color/md_theme_light_primary"
+            app:indicatorDirectionCircular="counterclockwise"
+            app:indicatorSize="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputTime"
+            app:trackColor="@color/md_theme_light_background"
+            app:trackCornerRadius="100dp"
+            app:trackThickness="16dp"
+            tools:ignore="MissingConstraints" />
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progressIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.CircularProgressIndicator"
-                tools:ignore="MissingConstraints"
-                app:trackColor="@color/md_theme_light_background"
-                app:indicatorColor="@color/md_theme_light_primary"
-                android:progress="0"
-                android:rotation="0"
-                app:indicatorDirectionCircular="counterclockwise"
-                app:indicatorSize="250dp"
-                app:trackThickness="16dp"
-                android:layout_marginTop="8dp"
-                app:trackCornerRadius="100dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputTime"/>
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/_00_00"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="@id/progressIndicator"
+            app:layout_constraintEnd_toEndOf="@id/progressIndicator"
+            app:layout_constraintStart_toStartOf="@id/progressIndicator"
+            app:layout_constraintTop_toTopOf="@id/progressIndicator" />
 
-            <TextView
-                android:id="@+id/textViewTime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/_00_00"
-                android:textSize="40sp"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toTopOf="@id/progressIndicator"
-                app:layout_constraintBottom_toBottomOf="@id/progressIndicator"
-                app:layout_constraintStart_toStartOf="@id/progressIndicator"
-                app:layout_constraintEnd_toEndOf="@id/progressIndicator"/>
-
-            <ImageButton
-                android:id="@+id/imageButtonStartTimer"
-                style="@style/ButtonCircleStyle"
-                android:contentDescription="@string/time_start"
-                android:src="@drawable/baseline_play_arrow_24"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="48dp"
-                app:layout_constraintEnd_toStartOf="@id/imageButtonStopTimer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/progressIndicator" />
+        <ImageButton
+            android:id="@+id/imageButtonStartTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/back_ground_circle_button"
+            android:backgroundTint="@color/md_theme_light_primary"
+            android:contentDescription="@string/time_start"
+            android:padding="12dp"
+            android:src="@drawable/baseline_play_arrow_24"
+            app:layout_constraintEnd_toStartOf="@id/imageButtonStopTimer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressIndicator" />
 
 
-            <ImageButton
-                android:id="@+id/imageButtonStopTimer"
-                style="@style/ButtonCircleStyle"
-                android:contentDescription="@string/time_stop"
-                android:src="@drawable/baseline_pause_24"
-                android:layout_marginTop="32dp"
-                app:layout_constraintStart_toEndOf="@id/imageButtonStartTimer"
-                app:layout_constraintEnd_toStartOf="@id/imageButtonResetTimer"
-                app:layout_constraintTop_toBottomOf="@id/progressIndicator"/>
+        <ImageButton
+            android:id="@+id/imageButtonStopTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/back_ground_circle_button"
+            android:backgroundTint="@color/md_theme_light_primary"
+            android:contentDescription="@string/time_stop"
+            android:padding="12dp"
+            android:src="@drawable/baseline_pause_24"
+            app:layout_constraintEnd_toStartOf="@id/imageButtonResetTimer"
+            app:layout_constraintStart_toEndOf="@id/imageButtonStartTimer"
+            app:layout_constraintTop_toBottomOf="@id/progressIndicator" />
 
-            <ImageButton
-                android:id="@+id/imageButtonResetTimer"
-                style="@style/ButtonCircleStyle"
-                android:contentDescription="@string/time_reset"
-                android:src="@drawable/baseline_cached_24"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="48dp"
-                app:layout_constraintStart_toEndOf="@id/imageButtonStopTimer"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/progressIndicator"/>
+        <ImageButton
+            android:id="@+id/imageButtonResetTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/back_ground_circle_button"
+            android:backgroundTint="@color/md_theme_light_primary"
+            android:contentDescription="@string/time_reset"
+            android:padding="12dp"
+            android:src="@drawable/baseline_cached_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageButtonStopTimer"
+            app:layout_constraintTop_toBottomOf="@id/progressIndicator" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

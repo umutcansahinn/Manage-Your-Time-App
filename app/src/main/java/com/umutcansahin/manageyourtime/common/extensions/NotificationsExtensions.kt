@@ -1,10 +1,13 @@
 package com.umutcansahin.manageyourtime.common.extensions
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.umutcansahin.manageyourtime.R
 
 fun View.showSnackBar(message: String, view: View = this, duration: Int = Toast.LENGTH_SHORT) {
     Snackbar.make(view, message, duration).show()
@@ -28,5 +31,15 @@ fun Context.showAlertDialog(
         .setCancelable(true)
         .setNegativeButton(String.NO) { dialog, _ ->
             dialog.cancel()
-        }.show()
+        }
+        .show()
+}
+
+@SuppressLint("UseCompatLoadingForDrawables")
+fun Context.showMaterialAlertDialog(
+    view:View,
+) {
+    MaterialAlertDialogBuilder(this)
+        .setView(view)
+        .show()
 }
