@@ -110,13 +110,13 @@ class DetailPlanFragment :
                 )
             }
             buttonDelete.setOnClickListener {
-              /*  requireContext().showAlertDialog(
+                requireContext().showAlertDialog(
                     getString(R.string.alert),
                     getString(R.string.do_you_want_to_delete_this_plan)
                 ) {
                     viewModel.deletePlan(entity)
-                }*/
-                showCustomAlertDialog(entity)
+                }
+               /* showCustomAlertDialog(entity)*/
             }
             imageButtonBack.setOnClickListener {
                 findNavController().popBackStack()
@@ -138,7 +138,7 @@ class DetailPlanFragment :
         }
     }
 
-    private fun showCustomAlertDialog(entity: PlanEntity) {
+  /*  private fun showCustomAlertDialog(entity: PlanEntity) {
         val inflater = LayoutInflater.from(requireContext())
         val bindingCustomAlert = CustomAlertDialogBinding.inflate(inflater)
         requireContext().showMaterialAlertDialog(bindingCustomAlert.root)
@@ -153,7 +153,7 @@ class DetailPlanFragment :
         bindingCustomAlert.textViewAlertTitle.text = getString(R.string.alert)
         bindingCustomAlert.textViewAlertMessage.text =
             getString(R.string.do_you_want_to_delete_this_plan)
-    }
+    }*/
 
     override fun onStop() {
         viewModel.pauseTimer()
