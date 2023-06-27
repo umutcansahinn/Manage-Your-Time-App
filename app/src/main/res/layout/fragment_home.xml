@@ -5,6 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:paddingTop="32dp"
+    android:paddingBottom="48dp"
     tools:context=".ui.home_screen.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,13 +15,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="96dp"
         android:background="@drawable/back_ground_rectangle"
         android:backgroundTint="@color/md_theme_light_primary"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/allListScreen">
 
         <ImageView
             android:id="@+id/imageViewAdd"
@@ -59,7 +62,8 @@
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addScreen">
+        app:layout_constraintTop_toBottomOf="@id/addScreen"
+        app:layout_constraintBottom_toTopOf="@id/countDownTimerScreen">
 
         <ImageView
             android:id="@+id/imageViewAllList"
@@ -100,6 +104,7 @@
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/stopWatchScreen"
         app:layout_constraintTop_toBottomOf="@id/allListScreen">
 
         <ImageView
@@ -141,6 +146,7 @@
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/countDownTimerScreen">
 
         <ImageView
