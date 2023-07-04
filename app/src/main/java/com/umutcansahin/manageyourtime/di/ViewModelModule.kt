@@ -1,6 +1,5 @@
 package com.umutcansahin.manageyourtime.di
 
-import com.umutcansahin.manageyourtime.ui.activity.MainViewModel
 import com.umutcansahin.manageyourtime.ui.add_screen.AddViewModel
 import com.umutcansahin.manageyourtime.ui.all_plan_screen.AllPlanViewModel
 import com.umutcansahin.manageyourtime.ui.count_down_timer_screen.CountDownTimerViewModel
@@ -33,5 +32,4 @@ val viewModelModule = module {
     }
     viewModel { StopWatchViewModel() }
     viewModel { CountDownTimerViewModel() }
-    viewModel { MainViewModel() }
 }

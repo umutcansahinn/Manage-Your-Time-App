@@ -1,9 +1,7 @@
 package com.umutcansahin.manageyourtime.ui.activity
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -23,17 +21,11 @@ class MainActivity : AppCompatActivity() {
     //ca-app-pub-3940256099942544~3347511713 --> test1
 
     private lateinit var binding: ActivityMainBinding
-    private val mainViewModel by viewModels<MainViewModel>()
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        mainViewModel.splash()
-        installSplashScreen().apply {
-            setKeepOnScreenCondition {
-                mainViewModel.isLoading.value
-            }
-        }
+        installSplashScreen()
         setContentView(binding.root)
 
         MobileAds.initialize(this) {}
@@ -46,8 +38,10 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.onBoardingFragment ->{
-                    binding.adView.gone()}
+                R.id.onBoardingFragment -> {
+                    binding.adView.gone()
+                }
+
                 else -> {
                     binding.adView.visible()
                 }

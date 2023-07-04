@@ -19,6 +19,7 @@
         <item name="windowSplashScreenBackground">@color/md_theme_light_background</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="postSplashScreenTheme">@style/Theme.ManageYourTime</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
     </style>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
