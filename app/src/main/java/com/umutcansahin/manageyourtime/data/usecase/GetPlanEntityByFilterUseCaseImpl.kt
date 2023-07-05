@@ -7,12 +7,15 @@ import com.umutcansahin.manageyourtime.common.filter.SortedBy
 import com.umutcansahin.manageyourtime.data.local.PlanEntity
 import com.umutcansahin.manageyourtime.domain.repository.PlanRepository
 import com.umutcansahin.manageyourtime.domain.usecase.GetPlanEntityByFilterUseCase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 class GetPlanEntityByFilterUseCaseImpl(
-    private val planRepository: PlanRepository
+    private val planRepository: PlanRepository,
+    private val defaultDispatcher: CoroutineDispatcher
 ) : GetPlanEntityByFilterUseCase {
     override fun invoke(
         sortedBy: SortedBy,
@@ -41,5 +44,5 @@ class GetPlanEntityByFilterUseCaseImpl(
         } catch (e: Exception) {
             emit(Resource.Error(e.message))
         }
-    }
+    }.flowOn(defaultDispatcher)
 }
