@@ -1,6 +1,7 @@
 package com.umutcansahin.manageyourtime
 
 import android.app.Application
+import com.umutcansahin.manageyourtime.di.coroutineDispatcherModule
 import com.umutcansahin.manageyourtime.di.localModule
 import com.umutcansahin.manageyourtime.di.repositoryModule
 import com.umutcansahin.manageyourtime.di.useCaseModule
@@ -21,6 +22,7 @@ class App: Application() {
                 repositoryModule,
                 useCaseModule,
                 viewModelModule,
+                coroutineDispatcherModule
             )
         }
     }

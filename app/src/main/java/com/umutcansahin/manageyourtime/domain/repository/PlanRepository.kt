@@ -9,8 +9,8 @@ interface PlanRepository {
     suspend fun updatePlan(planEntity: PlanEntity)
     suspend fun deletePlan(planEntity: PlanEntity)
     suspend fun deleteAllPlanEntity()
-    fun getAllPlanEntity(): Flow<List<PlanEntity>>
-    fun getPlanEntityById(entityId: Int): Flow<PlanEntity>
+    suspend fun getAllPlanEntity(): Flow<List<PlanEntity>>
+    suspend fun getPlanEntityById(entityId: Int): Flow<PlanEntity>
 
-    fun getPlanEntityBySearch(search: String): Flow<List<PlanEntity>>
+    suspend fun getPlanEntityBySearch(search: String): Flow<List<PlanEntity>>
 }
