@@ -15,27 +15,20 @@ class PlanRepositoryImpl(
 ) : PlanRepository {
 
     override suspend fun addPlan(planEntity: PlanEntity) {
-        withContext(ioDispatcher) {
-            planDao.addPlan(planEntity)
-        }
+        planDao.addPlan(planEntity)
     }
 
     override suspend fun updatePlan(planEntity: PlanEntity) {
-        withContext(ioDispatcher) {
-            planDao.updatePlan(planEntity)
-        }
+        planDao.updatePlan(planEntity)
+
     }
 
     override suspend fun deletePlan(planEntity: PlanEntity) {
-        withContext(ioDispatcher) {
-            planDao.deletePlan(planEntity)
-        }
+        planDao.deletePlan(planEntity)
     }
 
     override suspend fun deleteAllPlanEntity() {
-        withContext(ioDispatcher) {
-            planDao.deleteAllPlanEntity()
-        }
+        planDao.deleteAllPlanEntity()
     }
 
     override suspend fun getAllPlanEntity(): Flow<List<PlanEntity>> {
